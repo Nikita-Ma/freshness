@@ -24,7 +24,6 @@ module.exports = {
     'react/function-component-definition': 0,
     'import/order': 0,
     'default-param-last': 0,
-    'shorthand': 0,
     'object-shorthand': 2,
   },
 }
