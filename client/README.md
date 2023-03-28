@@ -1,14 +1,19 @@
 # FRESHNESS
+
 ## <place on img>
-### Client | Backend | Design 
-# Client  (v.0.0.0)
+
+### Client | Backend | Design
+
+# Client (v.0.0.0)
+
 ## DOCS
-###  Install
+
+### Install
 
 ### Config
 
 ### Scheme
 
 ### Developed
-* Nik
- 
+
+- Nik
