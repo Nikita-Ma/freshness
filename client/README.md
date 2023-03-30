@@ -4,7 +4,7 @@
 
 ### Client | Backend | Design
 
-# Client (v.0.1.0)
+# Client (v.0.1.1)
 
 ## DOCS
 
