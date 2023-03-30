@@ -1,0 +1,44 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "server",
+  "main": "index.js",
+  "scripts": {
+    "dev::server": "nodemon ./src/server.js",
+    "lint": "eslint --fix",
+    "pretty": "prettier --write .",
+    "prepare": "cd .. && husky install server/.husky"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "pgsql"
+  ],
+  "author": "Nik <nikitama1hr@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "2.8.7"
+  },
+  "lint-staged": {
+    "**/*.{js}": [
+      "npm run lint",
+      "prettier --write"
+    ]
+  }
+}
