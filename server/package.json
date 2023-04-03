@@ -4,7 +4,7 @@
   "description": "server",
   "main": "index.js",
   "scripts": {
-    "dev::server": "nodemon ./src/server.js",
+    "server": "nodemon ./src/server.js",
     "lint": "eslint --fix",
     "pretty": "prettier --write .",
     "prepare": "cd .. && husky install server/.husky"
