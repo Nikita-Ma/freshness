@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { exampleReducer } from './exampleReducer'
+import { checkIdReducer } from './checkIdReducer'
 
 export const rootReducer = combineReducers({
-  exampleReducer: exampleReducer,
+  checkIdReducer: checkIdReducer,
 })

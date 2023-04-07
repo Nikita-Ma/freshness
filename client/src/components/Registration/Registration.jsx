@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkIdAsyncAction } from '../../actions/checkIdAction'
 
 export const Registration = () => {
+  /*
+   * Use Hooks
+   */
   const [inputValue, setInputValue] = useState('')
   const [inputStatus, setInputStatus] = useState(false)
-  const [alertStatusSuccess, setAlertStatusSuccess] = useState('')
-  const [alertStatusWarning, setAlertStatusWarning] = useState('')
-  const [alertStatusError, setAlertStatusError] = useState('')
+  /*
+   * Connect Redux
+   */
+  const checkIdState = useSelector((state) => state.checkIdReducer)
+  const dispatch = useDispatch()
+  console.log(checkIdState)
   const handlerInviteCode = (e) => {
     setInputValue(e.target.value)
     if (inputValue.length === 10) {
@@ -14,30 +22,27 @@ export const Registration = () => {
       setInputStatus(false)
     }
   }
+
   useEffect(() => {
     console.log('UseEffect')
     if (inputStatus) {
-      const checkId = async () => {
-        const res = await fetch('http://localhost:5000')
-        const resAnswer = await res.json()
-        if (resAnswer.length) {
-          setAlertStatusSuccess(true)
-        }
-      }
-      checkId().catch((err) => {
-        setAlertStatusError(true)
-        console.error(
-          `Something error.. ${err.name} ${err.message} ${err.stack}`
-        )
-      })
+      dispatch(checkIdAsyncAction(JSON.stringify(inputValue)))
     }
   }, [inputStatus])
+  console.log('In REGISTER', checkIdState.alertStatusInfo)
   return (
-    // TODO:  write UI logic alert APP ? :
     <>
-      <h2>{alertStatusSuccess ? 'Congratulations you have succeeded!' : ''}</h2>
-      <h2>{alertStatusWarning ? 'Some Warning :(' : ''}</h2>
-      <h2>{alertStatusError ? 'Some Error!' : ''}</h2>
+      <h2>
+        {checkIdState.alertStatusSuccess
+          ? 'Congratulations you have succeeded!'
+          : ''}
+      </h2>
+      <h2>{checkIdState.alertStatusWarning ? 'Some Warning :(' : ''}</h2>
+      <h2>
+        {checkIdState.alertStatusError
+          ? `Some Error ${checkIdState.alertStatusInfo}`
+          : ''}
+      </h2>
       <input
         type="text"
         placeholder="format: market-sm-id"
