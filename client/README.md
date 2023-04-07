@@ -4,7 +4,7 @@
 
 ### Client | Backend | Design
 
-# Client (v.0.1.2)
+# Client (v.0.1.3)
 
 ## DOCS
 
@@ -46,4 +46,5 @@
 
 ### Developed
 
-- Nik
+- [Nik](https://github.com/Nikita-Ma)
+- [Honda](https://github.com/hondocha)
