@@ -26,5 +26,6 @@ module.exports = {
     'default-param-last': 0,
     'object-shorthand': 0,
     'no-unused-vars': 1,
+    'react/jsx-curly-brace-presence': 0,
   },
 }
