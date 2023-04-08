@@ -2,155 +2,235 @@
 
 * {box-sizing: border-box;}
 
+
 html, body {
+    display: flex;  /* TODO: Rewrite this code*/
+    flex-direction: column;/* TODO: Rewrite this code*/
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    background: url("img/main.png");
+    background: #ffffff;
     width: 100%;
     height: 100%;
     font-family: 'Roboto';
-    font-size: 12px;
     background-size: cover;
 }
 
-.container{
-    margin-left: 80px;
-    margin-right: 80px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .header{
-    padding-bottom: 250px;
+    text-align: center; /* center alignment of elements */
 }
 
-.finder{
-    padding-top: 100px;
-    padding-bottom: 150px;
+.logo{
+    padding-bottom: 28%; /* blank for logo*/
 }
 
-form {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
+.search-form{ /* common styles for the entire search bar block*/
+    margin-top: 7%; /* indent from the logo down*/
 }
-input {
-    width: 85%;
-    height: 100px;
-    padding-left: 10px;
-    border: 3px solid #184C51;
-    outline: none;
+
+.search-form__input{ /* search string styles*/
+    width: 72%;
+    height: 35px;
     background: #ffffff;
-    color: #ffffff;
-}
-.search{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 260%;
-    line-height: 100%;
+    color: #184C51;
+    border: 1px solid #184C51;
+    outline: none;
+    font-size: 12px;
+    padding-left: 2%; /* offset text to the left of the borders*/
 }
 
-button {
-    position: absolute;
-    top: 0;
-    right: 0px;
-    width: 112px;
-    height: 100px;
+.search-form__input::placeholder{ /* style for the search bar when clicking on it*/
+    color: #184C51;
+    opacity: 0.7;
+}
+
+.search-form__button{ /* style for the button in the search bar block*/
+    width: 11%;
+    height: 35px;
+    margin-bottom: 21%;
     border: none;
     background: #184C51;
-    border-radius: 0 5px 5px 0;
     cursor: pointer;
     color: white;
 }
 
-.plus{
-    width: 40%;
-    height: 40%;
-    margin: auto;
-}
-
-.main{
+.card{ /* general card styles*/
+    flex: 1 1 auto; /* TODO: Rewrite this code*/
+    max-width: 84%;
+    max-height: 23%;
     background-color: #184C51;
-    height: 350px;
-    width: 84%;
-    margin: auto;
-    border-radius: 40px;
-    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4%;
+    margin-left: 9%; /* indent card from the left edge of the entire page*/
 }
-.container-main{
-    margin-left: 33px;
-    margin-right: 33px;
-}
-h4{
-    font-family: 'Roboto';
-    font-style: normal;
+
+.card__text{ /* style for the main text in the card*/
+    color: #FFFFFF;
     font-weight: 400;
-    font-size: 370%;
+    font-size: 100%;
     line-height: 19px;
+    margin-top: 1%; /* indent text from the top border of the card*/
+}
+
+.form{ /* style for the product removal form*/
+    margin-top: -2%; /* indent from the top dough*/
+}
+
+.form__name-input{ /* style for the search string in the form*/
+    width: 67%;
+    height: 130%;
+    border: 1px solid #ffffff;
+    outline: none;
+    background: #184C51;
+    font-size: 75%;
+    margin-left: 3%; /* padding from the left border of the card*/
+}
+
+.form__id-input{ /* id input style*/
+    width: 21%;
+    height: 130%;
+    border: 1px solid #ffffff;
+    outline: none;
+    background: #184C51;
+    font-size: 75%;
+    margin-left: 3%; /* indent to the left of the search string in the form*/
+}
+
+.btn{ /* form button style*/
+    margin-top: 9%; /* indent up from the top form*/
+    display: flex;
+    justify-content: center;
+}
+
+.btn__add{ /* style for the left add product button*/
+    width: 120%;
+    height: 150%;
+    margin-left: -21%; /* button padding to the left of the card border*/
+    font-size: 75%;
+    border:none;
+    color: #184C51;
+    cursor: pointer;
+
+}
+
+.btn__cansel{ /* style for the left cansel product button*/
+    width: 120%;
+    height: 150%;
+    margin-left: 8%; /* indent to the left of the add product button*/
+    margin-right: -22%; /* padding to the right of the card border*/
+    font-size: 75%;
+    border: none;
+    color: #184C51;
+    cursor: pointer;
+}
+
+
+/*
+ * Tab-bar Styles
+*/
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tab-bar { /* style for bottom bar*/
+    background-color: #184C51;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: Roboto, sans-serif;
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+}
+
+ul > li:first-child {
+    margin-left: 37px;
+}
+
+
+ul > li:last-child {
+    margin-right: 37px;
+}
+
+a > img {
+    width: 15px;
+    height: 15px;
+    margin-bottom: 9px;
+}
+
+.menu-list {
+    min-height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-list__item > a {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-list__item--active {
+    color: #D8FFF8;
+}
+
+input::-webkit-input-placeholder {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
     color: white;
-    text-align: center;
-    padding-top: 45px;
+    padding-left: 10px
 }
 
-.form{
+input::-moz-placeholder {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    color: white;
+    padding-left: 10px
 }
 
-.name-prod{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 260%;
-    line-height: 100%;
-    width: 73%;
-    height: 70px;
-    padding-left: 10px;
-    border: 3px solid #ffffff;
-    outline: none;
-    background: #184C51;
-    color: #ffffff;
+input:-moz-placeholder {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    color: white;
+    padding-left: 10px
 }
 
-.id-prod{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 260%;
-    line-height: 100%;
-    width: 22%;
-    height: 70px;
-    padding-left: 10px;
-    border: 3px solid #ffffff;
-    outline: none;
-    background: #184C51;
-    color: #ffffff;
-    margin-left: 33px;
-    margin-bottom: 43px;
+input:-ms-input-placeholder {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    color: white;
+    padding-left: 10px
 }
 
-.add-prod{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 260%;
-    line-height: 100%;
-    width: 37%;
-    height: 70px;
-    padding-left: 10px;
-    outline: none;
-    background: #ffffff;
-    color: #184C51;
-    float: left;
-    margin-left: 56px
+input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.cansel-prod{
-    font-style: normal;
-    font-weight: 300;
-    font-size: 260%;
-    line-height: 100%;
-    width: 37%;
-    height: 70px;
-    padding-left: 10px;
-    outline: none;
-    background: #ffffff;
-    color: #184C51;
-    margin-left: 110px;
-    text-align: center;
+input:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }

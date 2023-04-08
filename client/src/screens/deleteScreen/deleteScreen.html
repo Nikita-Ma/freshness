@@ -1,37 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href='../../../../../freshness2/delete_main/style.css'>
-    <link rel="stylesheet" href='../../../../../freshness2/delete_main/normolize.css'>
-    <title>Freshness</title>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Freshness</title>
+  <link rel='stylesheet' href='style.css'>
+  <link rel='stylesheet' href='normolize.css'>
 </head>
 <body>
 
- <div class="header">
+<!---
+       * Create div`container && div`popup
+       --->
+<header class="header">
+  <div class='logo'></div>
+  <div class='search-form'>
+    <input type="text" class="search-form__input" placeholder="ENTER ID OR NAME PRODUCT">
+    <button class="search-form__button"><img src='img/plus.svg' alt='plus'></button>
+  </div>
+</header>
 
- </div>
- <div class="finder">
-     <div class="container">
-         <div>
-             <form>
-                 <input type="text" placeholder="ENTER ID OR NAME PRODUCT" class="search">
-                 <button type="submit"><img src='../../../../../freshness2/delete_main/img/plus.svg' alt="add" class="plus"></button>
-             </form>
-         </div>
-     </div>
- </div>
-
-<div class="main">
-    <div class="container-main">
-        <h4>DELETE PRODUCT</h4>
-        <form class="form">
-            <input type="text" placeholder="ENTER NAME PRODUCT" class="name-prod">
-            <input type="text" placeholder="ID" class="id-prod">
-        </form>
-        <form class="btn">
-            <input type="button" value="ADD PRODUCT" class="add-prod">
-            <input type="button" value="CANSEL" class="cansel-prod">
-        </form>
-    </div>
+<!---
+       * CARD SECTION
+       --->
+<div class='card'>
+  <p class='card__text'>DELETE PRODUCT</p>
+  <div class='form'>
+  <input type="text" class='form__name-input' placeholder="ENTER NAME PRODUCT">
+  <input type="text" class='form__id-input' placeholder="ID">
+  </div>
+  <div class='btn'>
+    <button class='btn__add'>ADD PRODUCT</button>
+    <button class='btn__cansel'>CANSEL</button>
+  </div>
 </div>
+
+<!--
+     *BAR SECTION
+     -->
+
+<div class='tab-bar'>
+  <ul class='menu-list'>
+    <li class='menu-list__item menu-list__item--active'>
+      <a href='' class='menu-list__link'>
+        <img src='img/search-icon.svg' alt=''>
+        All list
+      </a>
+    </li>
+    <li class='menu-list__item '>
+      <a href='' class='menu-list__link'>
+        <img src='img/warning-icon.svg' alt=''>Warning
+      </a>
+    </li>
+    <li class='menu-list__item'>
+      <a href='' class='menu-list__link'>
+        <img src='img/hot-icon.svg' alt=''>hot
+      </a>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
