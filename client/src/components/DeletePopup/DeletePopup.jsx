@@ -12,35 +12,8 @@ export const DeletePopup = () => {
     }
   }
   // TODO: rewrite on redux-thunk
-  const deleteProduct = () => {
-    if (nameProduct.length) {
-      fetch('http://localhost:5000/v1/product/deleteProductFromName', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(nameProduct), // body data type must match "Content-Type" header
-      }).then((res) => {
-        // TODO: Popup visible false && alert success
-        console.log('Success')
-        return res.json()
-      })
-    } else if (idProduct.length) {
-      fetch('http://localhost:5000/v1/product/deleteProductFromId', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(idProduct), // body data type must match "Content-Type" header
-      }).then((res) => {
-        // TODO: Popup visible false && alert success
-        console.log('Success')
-        return res.json()
-      })
-    }
-  }
+  // TODO: write connect react-redux && test logic
+  const deleteProduct = () => {}
 
   const disabledModal = () => {
     console.log('Disabled modal')
