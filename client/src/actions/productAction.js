@@ -3,6 +3,10 @@ export const deleteProductAsyncAction =
   async (dispatch) => {
     dispatch(deleteProductLoading())
     if (nameProduct.length) {
+      console.log('Guard', nameProduct.length)
+      console.log(nameProduct)
+      const dataJSON = JSON.stringify(nameProduct)
+      console.log(dataJSON)
       fetch('http://localhost:5000/v1/product/deleteProductFromName', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
@@ -12,15 +16,15 @@ export const deleteProductAsyncAction =
         body: JSON.stringify(nameProduct), // body data type must match "Content-Type" header
       })
         .then((res) => {
-          // TODO: Popup visible false && alert success
           console.log('Success')
-          let dataRes = res.json()
+          const dataRes = res.json()
           dispatch(deleteProductNameAction(dataRes))
         })
         .catch((err) => {
           dispatch(deleteProductError(err))
         })
     } else if (idProduct.length) {
+      const dataJSON = JSON.stringify(idProduct)
       fetch('http://localhost:5000/v1/product/deleteProductFromId', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
@@ -30,16 +34,14 @@ export const deleteProductAsyncAction =
         body: JSON.stringify(idProduct), // body data type must match "Content-Type" header
       })
         .then((res) => {
-          // TODO: Popup visible false && alert success
           console.log('Success')
-          let dataRes = res.json()
+          const dataRes = res.json()
           dispatch(deleteProductIdAction(dataRes))
         })
         .catch((err) => {
           dispatch(deleteProductError(err))
         })
     } else {
-      //TODO: Realize func Error
       dispatch(deleteProductError(`Isn't correct`))
     }
   }

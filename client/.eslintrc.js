@@ -28,5 +28,6 @@ module.exports = {
     'no-unused-vars': 1,
     'react/jsx-curly-brace-presence': 0,
     'no-use-before-define': 0,
+    'spaced-comment': 1,
   },
 }
