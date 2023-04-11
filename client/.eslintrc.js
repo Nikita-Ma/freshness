@@ -22,6 +22,7 @@ module.exports = {
     'react/jsx-no-useless-fragment': 0,
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
+    'react/self-closing-comp': 1,
     'import/order': 0,
     'default-param-last': 0,
     'object-shorthand': 0,
