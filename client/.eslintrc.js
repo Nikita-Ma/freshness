@@ -30,5 +30,7 @@ module.exports = {
     'react/jsx-curly-brace-presence': 0,
     'no-use-before-define': 0,
     'spaced-comment': 1,
+    'array-callback-return': 1,
+    'no-unused-expressions': 1,
   },
 }

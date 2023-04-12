@@ -1,3 +1,5 @@
+import { imgToBlob } from '../helpers/imgToBlob'
+
 export const deleteProductAsyncAction =
   ({ nameProduct, idProduct }) =>
   async (dispatch) => {
@@ -73,16 +75,10 @@ export const deleteProductError = (errData) => {
 }
 
 export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
-  // TODO create helpers func
-  const testBlob = new Blob([dataProduct.files], {
-    type: 'image/jpeg',
-  })
-  console.warn(testBlob, 'BLOBIGGGGGGGG')
   const refactorData = {
     ...dataProduct,
-    file: testBlob,
+    file: imgToBlob(dataProduct),
   }
-  // todo end
   console.log(refactorData)
   dispatch(deleteProductLoading())
 
