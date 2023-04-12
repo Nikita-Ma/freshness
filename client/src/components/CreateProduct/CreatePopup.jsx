@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { createProductAsyncAction } from '../../actions/productAction'
+import { useDispatch } from 'react-redux'
 
 export const CreatePopup = () => {
   const [product, setProduct] = useState({
@@ -9,12 +11,35 @@ export const CreatePopup = () => {
     descProduct: null,
     imgProduct: null,
   })
+  const imgUploadRef = useRef(null)
+  const dispatch = useDispatch()
   const handleInputChange = (event) => {
     const { className, value } = event.target
+    if (className === 'imgProduct') {
+      alert('Photo added! ')
+    }
     setProduct((prevState) => ({
       ...prevState,
       [className]: value,
     }))
+  }
+  const sendForm = () => {
+    if (
+      !product.nameProduct ||
+      !product.idProduct ||
+      !product.dateProduct ||
+      !product.countProduct ||
+      !product.descProduct
+    ) {
+      alert('Some mistake on Form')
+      console.error('Sorry, some mistake on form')
+    } else {
+      const readyData = {
+        ...product,
+        file: imgUploadRef.current.files[0],
+      }
+      dispatch(createProductAsyncAction(readyData))
+    }
   }
   return (
     // draft html structure
@@ -56,11 +81,22 @@ export const CreatePopup = () => {
         error explicabo, id itaque nulla odio omnis quam repellat voluptate
         voluptatibus.
       </textarea>
+
       <div
         className="box"
         style={{ width: '100px', height: '100px', background: 'black' }}
-      ></div>
-      <button type={'button'} className="add">
+      >
+        <input
+          className="imgProduct"
+          type="file"
+          id="img-upload"
+          accept="image/*"
+          style={{ display: 'block', width: '100px', height: '100px' }}
+          ref={imgUploadRef}
+          onChange={handleInputChange}
+        />
+      </div>
+      <button type={'button'} className="add" onClick={sendForm}>
         add
       </button>
       <button type={'button'} className="cancel">

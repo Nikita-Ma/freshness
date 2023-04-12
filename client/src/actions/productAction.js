@@ -71,3 +71,14 @@ export const deleteProductError = (errData) => {
     payload: errData,
   }
 }
+
+export const createProductAsyncAction = (data) => async (dispatch) => {
+  // TODO: Write some functional
+}
+export const createProductSuccess = () => {
+  // TODO: Write some functional
+}
+
+export const createProductError = () => {
+  // TODO: Write some functional
+}
