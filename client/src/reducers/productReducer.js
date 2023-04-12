@@ -5,27 +5,26 @@ const initialState = {
   dataError: null,
   listProducts: [
     {
-      name: 'Water',
-      id: 12312312312451,
-      date: '21.11.1009',
-      count: 25,
-      description: ' a type specimen book. It has  not  five centuries, but a',
+      nameProduct: 'Water',
+      idProduct: 12312312312451,
+      dateProduct: '21.11.1009',
+      countProduct: 25,
+      descProduct: 'a type specimen book. It has  not  five centuries, but a',
+    },
+    {
+      nameProduct: 'Bread',
+      idProduct: 21509876,
+      dateProduct: '21.11.1309',
+      countProduct: 1,
+      descProduct: ' a type specimen book. It has  not  five centuries, but a',
       img: '../../public/logo512.png',
     },
     {
-      name: 'Bread',
-      id: 21509876,
-      date: '21.11.1309',
-      count: 1,
-      description: ' a type specimen book. It has  not  five centuries, but a',
-      img: '../../public/logo512.png',
-    },
-    {
-      name: 'Dalt',
-      id: 12312312312451,
-      date: '21.11.2509',
-      count: 215,
-      description: ' a type specimen book. It has  not  five centuries, but a',
+      nameProduct: 'Dalt',
+      idProduct: 12312312312451,
+      dateProduct: '21.11.2509',
+      countProduct: 215,
+      descProduct: ' a type specimen book. It has  not  five centuries, but a',
       img: '../../public/logo512.png',
     },
   ],
@@ -52,6 +51,20 @@ export const productReducer = (state = initialState, action) => {
         loading: false,
       }
     case 'CREATE_PRODUCT_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        dataError: action.payload,
+      }
+    case 'EDIT_PRODUCT_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        dataError: action.payload,
+      }
+    case 'EDIT_PRODUCT_SUCCESS':
       return {
         ...state,
         loading: false,

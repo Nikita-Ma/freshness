@@ -118,3 +118,49 @@ export const createProductError = (errData) => {
     payload: errData,
   }
 }
+
+export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
+  const refactorData = {
+    ...dataProduct,
+    file: imgToBlob(dataProduct),
+  }
+  console.log(refactorData)
+  dispatch(deleteProductLoading())
+
+  fetch('http://localhost:5000/v1/product/create', {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(refactorData), // body data type must match "Content-Type" header
+  })
+    .then((res) => {
+      console.log('Success')
+      const resData = res.json()
+      dispatch(editProductSuccess(resData))
+    })
+    .catch((err) => {
+      console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
+      const debugErrData = {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      }
+      dispatch(editProductError(debugErrData))
+    })
+}
+
+export const editProductSuccess = (resData) => {
+  // TODO: Write some functional
+  return {
+    type: 'EDIT_PRODUCT_SUCCESS',
+    payload: JSON.stringify(resData),
+  }
+}
+
+export const editProductError = (errData) => {
+  return {
+    type: 'EDIT_PRODUCT_ERROR',
+    payload: errData,
+  }
+}
