@@ -72,13 +72,53 @@ export const deleteProductError = (errData) => {
   }
 }
 
-export const createProductAsyncAction = (data) => async (dispatch) => {
-  // TODO: Write some functional
+export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
+  // TODO create helpers func
+  const testBlob = new Blob([dataProduct.files], {
+    type: 'image/jpeg',
+  })
+  console.warn(testBlob, 'BLOBIGGGGGGGG')
+  const refactorData = {
+    ...dataProduct,
+    file: testBlob,
+  }
+  // todo end
+  console.log(refactorData)
+  dispatch(deleteProductLoading())
+
+  fetch('http://localhost:5000/v1/product/create', {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(refactorData), // body data type must match "Content-Type" header
+  })
+    .then((res) => {
+      console.log('Success')
+      const resData = res.json()
+      dispatch(createProductSuccess(resData))
+    })
+    .catch((err) => {
+      console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
+      const debugErrData = {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      }
+      dispatch(createProductError(debugErrData))
+    })
 }
-export const createProductSuccess = () => {
+export const createProductSuccess = (resData) => {
   // TODO: Write some functional
+  return {
+    type: 'CREATE_PRODUCT_SUCCESS',
+    payload: JSON.stringify(resData),
+  }
 }
 
-export const createProductError = () => {
-  // TODO: Write some functional
+export const createProductError = (errData) => {
+  return {
+    type: 'CREATE_PRODUCT_ERROR',
+    payload: errData,
+  }
 }

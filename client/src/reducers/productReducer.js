@@ -21,9 +21,17 @@ export const productReducer = (state = initialState, action) => {
         dataError: action.payload,
       }
     case 'CREATE_PRODUCT_SUCCESS':
-      return state
+      return {
+        ...state,
+        loading: false,
+      }
     case 'CREATE_PRODUCT_ERROR':
-      return state
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        dataError: action.payload,
+      }
     default:
       return state
   }

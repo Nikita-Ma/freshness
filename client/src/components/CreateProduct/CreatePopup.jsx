@@ -9,14 +9,13 @@ export const CreatePopup = () => {
     dateProduct: null,
     countProduct: null,
     descProduct: null,
-    imgProduct: null,
   })
   const imgUploadRef = useRef(null)
   const dispatch = useDispatch()
   const handleInputChange = (event) => {
     const { className, value } = event.target
     if (className === 'imgProduct') {
-      alert('Photo added! ')
+      console.log('Photo added')
     }
     setProduct((prevState) => ({
       ...prevState,
@@ -31,7 +30,6 @@ export const CreatePopup = () => {
       !product.countProduct ||
       !product.descProduct
     ) {
-      alert('Some mistake on Form')
       console.error('Sorry, some mistake on form')
     } else {
       const readyData = {
@@ -74,7 +72,7 @@ export const CreatePopup = () => {
       />
       <textarea
         className={'descProduct'}
-        value="This is a description."
+        value={product.descProduct || ''}
         onChange={handleInputChange}
       >
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
