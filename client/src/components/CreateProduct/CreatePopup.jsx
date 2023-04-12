@@ -10,10 +10,10 @@ export const CreatePopup = () => {
     imgProduct: null,
   })
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { className, value } = event.target
     setProduct((prevState) => ({
       ...prevState,
-      [name]: value,
+      [className]: value,
     }))
   }
   return (
@@ -25,7 +25,6 @@ export const CreatePopup = () => {
         className="nameProduct"
         placeholder={'name'}
         onChange={handleInputChange}
-        value={product.nameProduct || ''}
       />
       <input
         type="text"
