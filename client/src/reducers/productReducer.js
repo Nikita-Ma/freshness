@@ -45,6 +45,8 @@ export const productReducer = (state = initialState, action) => {
         error: true,
         dataError: action.payload,
       }
+    case 'CREATE_PRODUCT_LOADING':
+      return { ...state, loading: true }
     case 'CREATE_PRODUCT_SUCCESS':
       return {
         ...state,
@@ -57,6 +59,8 @@ export const productReducer = (state = initialState, action) => {
         error: true,
         dataError: action.payload,
       }
+    case 'EDIT_PRODUCT_LOADING':
+      return { ...state, loading: true }
     case 'EDIT_PRODUCT_ERROR':
       return {
         ...state,
@@ -71,6 +75,8 @@ export const productReducer = (state = initialState, action) => {
         error: true,
         dataError: action.payload,
       }
+    case 'SEARCH_PRODUCT_LOADING':
+      return { ...state, loading: true }
     default:
       return state
   }

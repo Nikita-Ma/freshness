@@ -127,7 +127,7 @@ export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
   console.log(refactorData)
   dispatch(deleteProductLoading())
 
-  fetch('http://localhost:5000/v1/product/create', {
+  fetch('http://localhost:5000/v1/product/edit', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json',
@@ -161,6 +161,63 @@ export const editProductSuccess = (resData) => {
 export const editProductError = (errData) => {
   return {
     type: 'EDIT_PRODUCT_ERROR',
+    payload: errData,
+  }
+}
+
+export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
+  dispatch(searchProductLoading())
+  fetch(`http://localhost:5000/v1/product/search-name?${dataName}`)
+    .then((res) => {
+      console.log('Success')
+      const resData = res.json()
+      dispatch(searchProductSuccess(resData))
+    })
+    .catch((err) => {
+      console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
+      const debugErrData = {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      }
+      dispatch(searchProductError(debugErrData))
+    })
+}
+
+export const searchProductIdAsyncAction = (dataId) => (dispatch) => {
+  dispatch(searchProductLoading())
+  fetch(`http://localhost:5000/v1/product/search-id?${dataId}`)
+    .then((res) => {
+      console.log('Success')
+      const resData = res.json()
+      dispatch(searchProductSuccess(resData))
+    })
+    .catch((err) => {
+      console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
+      const debugErrData = {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      }
+      dispatch(searchProductError(debugErrData))
+    })
+}
+
+export const searchProductLoading = () => {
+  return {
+    type: 'SEARCH_PRODUCT_LOADING',
+  }
+}
+export const searchProductSuccess = (resData) => {
+  // TODO: Write some functional
+  return {
+    type: 'SEARCH_PRODUCT_SUCCESS',
+    payload: JSON.stringify(resData),
+  }
+}
+export const searchProductError = (errData) => {
+  return {
+    type: 'SEARCH_PRODUCT_ERROR',
     payload: errData,
   }
 }
