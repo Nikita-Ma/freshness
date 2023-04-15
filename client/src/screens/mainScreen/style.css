@@ -159,7 +159,7 @@ a {
     justify-content: center;
 }
 
-.btn__add-button{
+.btn__add{
     width: 140%;
     height: 175%;
     margin-left: -21%;
@@ -169,7 +169,7 @@ a {
     cursor: pointer;
 }
 
-.btn__cansel-button{
+.btn__cansel{
     width: 120%;
     height: 175%;
     margin-left: 8%;
