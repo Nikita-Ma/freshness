@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+*, 
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 360vh;
+}
+
+.main__input {
+    margin: 317px 55px;
+    box-sizing: border-box;
+    border: 1px solid #184C51;
+    width: 40vh;
+    height: 8vh;
+    font-size: 12px;
+    position: relative;
+}
+
+.main__input::placeholder {
+    transform: translateX(10px);
+  }
+
+.main__input:focus {
+    padding: 20px;
+    border: 1px solid #184C51;
+}
+
+.text {
+    padding: 0 0;
+    text-transform: uppercase;
+    color: #184C51;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: -396px 57px;
+    font-size: 16px;
+    border-left: 0.2vh solid #184C51;
+}
+
+
+.main__button {
+    position: absolute;
+    margin: 564px 88px;
+    padding-left: 3.5px;
+    border-radius: 5px;           
+    font-size: 24px;
+    font-weight: 400;
+    text-decoration: none;
+    user-select: none;
+    line-height: 1.5;
+    width: 25vh;
+    box-sizing: content-box;
+}
+
+
+.button--blue {
+    border: none;
+    background: #184C51;
+    color: #fff;
+    
+}
+
+.button:active{
+    transform: scale(1.2)
+}
+.main__subtitle {
+    display: none;
+}
+
+
+@media (max-width: 500px) {
+    .main__input {
+        justify-content: center;
+        margin-left: 27px;
+    }
+
+    .text {
+        margin-top: -413px;
+        margin-left: 28.2px;
+    }
+
+    .main__subtitle {
+        display: none;
+    }
+}
+
+
+@media (min-width: 300px) {
+    .container {
+        padding-right: 10px;
+    }
+    
+}
+
+@media (min-width: 800px) {
+    .main__button {
+        display: none;
+    }
+
+    .main__input {
+        display: none;
+    }
+
+    .text {
+        display: none;
+    }
+
+    .main__subtitle {
+        display: block;
+        font-size: 30px;
+        font-weight: 400;
+        text-align: center;
+    }
+
+   .alfa {
+    display:none !important;
+   }
+}
+
+.alfa {
+    position: absolute;
+    display: block;
+    margin: 556px 232px;
+    padding-bottom: 2px;
+    
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+}
+
+.alfa--style {
+    background: #4D8339;
+    border-radius: 2px;
+    width: 51px;
+    height: 20px;
+}
