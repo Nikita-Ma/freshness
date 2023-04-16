@@ -1,5 +1,12 @@
 import { imgToBlob } from '../helpers/imgToBlob'
 
+/*
+ ******************
+ *
+ * DELETE PRODUCT
+ *
+ ******************
+ *  */
 export const deleteProductAsyncAction =
   ({ nameProduct, idProduct }) =>
   async (dispatch) => {
@@ -10,7 +17,7 @@ export const deleteProductAsyncAction =
       const dataJSON = JSON.stringify(nameProduct)
       console.log(dataJSON)
       fetch('http://localhost:5000/v1/product/deleteProductFromName', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Content-Type': 'application/json',
           // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -28,7 +35,7 @@ export const deleteProductAsyncAction =
     } else if (idProduct.length) {
       const dataJSON = JSON.stringify(idProduct)
       fetch('http://localhost:5000/v1/product/deleteProductFromId', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Content-Type': 'application/json',
           // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -47,7 +54,6 @@ export const deleteProductAsyncAction =
       dispatch(deleteProductError(`Isn't correct`))
     }
   }
-export const deleteProductAction = () => {}
 export const deleteProductIdAction = (resData) => {
   console.log('productAction.js', resData)
   return {
@@ -74,13 +80,20 @@ export const deleteProductError = (errData) => {
   }
 }
 
+/*
+ ******************
+ *
+ * CREATE PRODUCT
+ *
+ ******************
+ *  */
 export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
     file: imgToBlob(dataProduct),
   }
   console.log(refactorData)
-  dispatch(deleteProductLoading())
+  dispatch(createProductLoading())
 
   fetch('http://localhost:5000/v1/product/create', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -111,7 +124,11 @@ export const createProductSuccess = (resData) => {
     payload: JSON.stringify(resData),
   }
 }
-
+export const createProductLoading = () => {
+  return {
+    type: 'CREATE_PRODUCT_LOADING',
+  }
+}
 export const createProductError = (errData) => {
   return {
     type: 'CREATE_PRODUCT_ERROR',
@@ -119,13 +136,20 @@ export const createProductError = (errData) => {
   }
 }
 
+/*
+ ******************
+ *
+ * EDIT PRODUCT
+ *
+ ******************
+ *  */
 export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
     file: imgToBlob(dataProduct),
   }
   console.log(refactorData)
-  dispatch(deleteProductLoading())
+  dispatch(editProductLoading())
 
   fetch('http://localhost:5000/v1/product/edit', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -157,13 +181,25 @@ export const editProductSuccess = (resData) => {
     payload: JSON.stringify(resData),
   }
 }
-
+export const editProductLoading = () => {
+  return {
+    type: 'EDIT_PRODUCT_LOADING',
+  }
+}
 export const editProductError = (errData) => {
   return {
     type: 'EDIT_PRODUCT_ERROR',
     payload: errData,
   }
 }
+
+/*
+ ******************
+ *
+ * EDIT PRODUCT
+ *
+ ******************
+ *  */
 
 export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
   dispatch(searchProductLoading())
