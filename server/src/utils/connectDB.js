@@ -1,11 +1,12 @@
 const { Client } = require('pg')
 function connectDB() {
+  // TODO: insert values in .ENV && write docs
   const client = new Client({
-    host: 'my.database-server.com',
-    port: 5334,
-    database: 'database-name',
-    user: 'database-user',
-    password: 'secretpassword!!',
+    host: 'localhost',
+    port: 5432,
+    database: 'DB_USER',
+    user: 'postgres',
+    password: '1234',
   })
   client
     .connect()
