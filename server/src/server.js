@@ -5,6 +5,7 @@ const app = express()
 
 const loginRoutes = require('./routes/loginRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+const connectDB = require('./utils/connectDB')
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -14,6 +15,10 @@ app.use((req, res, next) => {
   )
   next()
 })
+
+// * Connect DataBase
+connectDB()
+
 app.use(express.json())
 
 const PORT = process.env.PORT || 5000
