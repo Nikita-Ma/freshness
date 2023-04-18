@@ -1,14 +1,14 @@
-const { Client } = require('pg')
+const Pool = require('pg').Pool
 function connectDB() {
   // TODO: insert values in .ENV && write docs
-  const client = new Client({
+  const pool = new Pool({
     host: 'localhost',
     port: 5432,
-    database: 'DB_USER',
+    database: 'postgres',
     user: 'postgres',
     password: '1234',
   })
-  client
+  pool
     .connect()
     .then(() => console.log('connected'))
     .catch((err) => console.error('connection error', err.stack))
