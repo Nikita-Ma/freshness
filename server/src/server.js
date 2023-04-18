@@ -4,6 +4,7 @@ const bodyParser = require('express')
 const app = express()
 
 const loginRoutes = require('./routes/loginRoutes')
+const productRoutes = require('./routes/productRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./utils/connectDB')
 
@@ -25,6 +26,8 @@ app.get('/', (req, res) => {
   res.json('Api running..')
 })
 app.use('/v1/login', loginRoutes)
+
+app.use('/v1/product', productRoutes)
 
 // * MIDDLEWARE
 app.use(notFound)

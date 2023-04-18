@@ -90,10 +90,12 @@ export const deleteProductError = (errData) => {
 export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
-    file: imgToBlob(dataProduct),
+    file: imgToBlob(dataProduct.file),
   }
-  console.log(refactorData)
+  console.log(refactorData.file)
   dispatch(createProductLoading())
+
+  // TODO: Prepare STATUS CODE!!!
 
   fetch('http://localhost:5000/v1/product/create', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
