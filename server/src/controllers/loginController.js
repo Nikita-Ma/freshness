@@ -1,22 +1,10 @@
 const asyncHandler = require('express-async-handler')
-
-// TODO: DELETE ON FUTURE
-const fakeDB = [
-  {
-    name: 'Nik',
-    wStatus: 'Seller',
-    idM: '2131251258912',
-    lSession: true,
-  },
-  {
-    name: 'Nik',
-    wStatus: 'Seller',
-    idM: '2131251258912',
-    lSession: true,
-  },
-]
+const db = require('../config/db')
 
 const getLogin = asyncHandler(async (req, res) => {
+  const { idM } = req.params
+  const findPerson = await db.query('SELECT * FROM user_data')
+  console.log(`SQL`, findPerson)
   const dataId = req.body.idM
   const checkId = fakeDB.find((dataObj) => dataObj.idM === dataId)
   if (JSON.stringify(checkId) === undefined) {

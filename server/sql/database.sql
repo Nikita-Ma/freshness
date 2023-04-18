@@ -12,4 +12,4 @@ create TABLE product {
     p_img VARCHAR(255),
     product_id INTEGER,
     FOREIGN KEY (product_id) REFERENCES person(id)
-    }n
+    }
