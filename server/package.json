@@ -4,7 +4,7 @@
   "description": "server",
   "main": "index.js",
   "scripts": {
-    "dev::server": "nodemon ./src/server.js",
+    "server": "nodemon ./src/server.js",
     "lint": "eslint --fix",
     "pretty": "prettier --write .",
     "prepare": "cd .. && husky install server/.husky"
@@ -25,7 +25,8 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "pg": "^8.10.0"
   },
   "devDependencies": {
     "eslint": "^8.37.0",
