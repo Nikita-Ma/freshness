@@ -46,12 +46,52 @@ const updateProduct = asyncHandler(async (req, res, next) => {
     file,
   } = req.body
 
-  const updateProduct = await db.query(
-    'UPDATE  product_data SET ( p_name,   p_id,p_date,p_desc, p_img) VALUES ($1, $2, $3, $4, $5)',
+  const updateSelectedProduct = await db.query(
+    'UPDATE product_data  SET  p_name = $1, p_id=$2, p_date = $3, p_count=$4, p_desc = $5, p_img = $6 WHERE p_id = $2',
     [nameProduct, idProduct, dateProduct, countProduct, descProduct, file]
   )
-
-  res.json('Updated')
+  if (!updateSelectedProduct.rowCount) {
+    res.sendStatus(404)
+  }
+  res.sendStatus(200)
 })
 
-module.exports = { createProduct, deleteProduct, updateProduct }
+const searchProduct = asyncHandler(async (req, res, next) => {
+  const { name, id } = req.query // TODO: Maybe refactor on req.params
+
+  if (!(name || id)) {
+    return res.sendStatus(404)
+  }
+
+  if (name) {
+    const findProductName = await db.query(
+      'SELECT * FROM product_data WHERE p_name = $1',
+      [name]
+    )
+    if (!findProductName.rows[0]) {
+      return res.sendStatus(404)
+    }
+    res.json(findProductName.rows[0])
+  }
+
+  if (id) {
+    //*
+    // * Search Product ID
+    // */
+    const findProductId = await db.query(
+      'SELECT * FROM product_data WHERE p_id = $1',
+      [id]
+    )
+    if (!findProductId.rows[0]) {
+      return res.sendStatus(404)
+    }
+    res.json(findProductId.rows[0])
+  }
+})
+
+module.exports = {
+  createProduct,
+  deleteProduct,
+  updateProduct,
+  searchProduct,
+}
