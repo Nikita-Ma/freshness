@@ -1,3 +1,5 @@
+const colors = require('colors')
+
 const Pool = require('pg').Pool
 function connectDB() {
   // TODO: insert values in .ENV && write docs
@@ -10,7 +12,9 @@ function connectDB() {
   })
   pool
     .connect()
-    .then(() => console.log('connected'))
-    .catch((err) => console.error('connection error', err.stack))
+    .then(() => console.log('[DATABASE] Connected'.bold.green.underline))
+    .catch((err) =>
+      console.error('connection error'.bold.red.underline, err.stack)
+    )
 }
 module.exports = connectDB

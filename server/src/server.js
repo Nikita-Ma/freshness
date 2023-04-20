@@ -3,6 +3,7 @@ const colors = require('colors')
 const bodyParser = require('express')
 const app = express()
 
+const registerRoutes = require('./routes/registerRoutes')
 const loginRoutes = require('./routes/loginRoutes')
 const productRoutes = require('./routes/productRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
@@ -29,12 +30,13 @@ app.use('/v1/login', loginRoutes)
 
 app.use('/v1/product', productRoutes)
 
+app.use('/v1/register', registerRoutes)
 // * MIDDLEWARE
 app.use(notFound)
 
 app.use(errorHandler)
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 app.listen(
   PORT,
