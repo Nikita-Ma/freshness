@@ -89,9 +89,31 @@ const searchProduct = asyncHandler(async (req, res, next) => {
   }
 })
 
+const allList = asyncHandler(async (req, res, next) => {
+  const fullList = await db.query('SELECT * FROM product_data')
+  return res.json(fullList.rows)
+})
+
+const warningList = asyncHandler(async (req, res, next) => {
+  const warningList = await db.query(
+    'SELECT * FROM product_data WHERE p_date < 7'
+  )
+  return res.json(warningList.rows)
+})
+
+const hotList = asyncHandler(async (req, res, next) => {
+  const warningList = await db.query(
+    'SELECT * FROM product_data WHERE p_date < 3'
+  )
+  return res.json(warningList.rows)
+})
+
 module.exports = {
   createProduct,
   deleteProduct,
   updateProduct,
   searchProduct,
+  allList,
+  warningList,
+  hotList,
 }
