@@ -205,7 +205,7 @@ export const editProductError = (errData) => {
 
 export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
   dispatch(searchProductLoading())
-  fetch(`http://localhost:5000/v1/product/search-name?${dataName}`)
+  fetch(`http://localhost:5000/v1/product/search?name=${dataName}`)
     .then((res) => {
       console.log('Success')
       const resData = res.json()
@@ -224,7 +224,7 @@ export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
 
 export const searchProductIdAsyncAction = (dataId) => (dispatch) => {
   dispatch(searchProductLoading())
-  fetch(`http://localhost:5000/v1/product/search-id?${dataId}`)
+  fetch(`http://localhost:5000/v1/product/search?id=${dataId}`)
     .then((res) => {
       console.log('Success')
       const resData = res.json()
