@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   res.json('Api running..')
 })
 app.use('/v1/login', loginRoutes)
-
+// TODO: REFACTOR SAVE IMG ON DIR NOT DATABASE!!
 app.use('/v1/product', productRoutes)
 
 app.use('/v1/register', registerRoutes)

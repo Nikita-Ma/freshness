@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 export const EditPopup = () => {
   const [product, setProduct] = useState({
     nameProduct: 'Water',
-    idProduct: 12312312312451,
-    dateProduct: '21.11.1009',
+    idProduct: 123123,
+    dateProduct: 123,
     countProduct: 25,
     descProduct: 'a type specimen book. It has  not  five centuries, but a',
   })

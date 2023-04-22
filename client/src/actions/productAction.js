@@ -24,29 +24,23 @@ export const deleteProductAsyncAction =
         },
         body: JSON.stringify(nameProduct), // body data type must match "Content-Type" header
       })
-        .then((res) => {
-          console.log('Success')
-          const dataRes = res.json()
-          dispatch(deleteProductNameAction(dataRes))
-        })
+        .then((res) => res.json())
+        .then((resOk) => dispatch(deleteProductNameAction(resOk)))
         .catch((err) => {
           dispatch(deleteProductError(err))
         })
     } else if (idProduct.length) {
       const dataJSON = JSON.stringify(idProduct)
       fetch('http://localhost:5000/v1/product/deleteProductFromId', {
-        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify(idProduct), // body data type must match "Content-Type" header
       })
-        .then((res) => {
-          console.log('Success')
-          const dataRes = res.json()
-          dispatch(deleteProductIdAction(dataRes))
-        })
+        .then((res) => res.json())
+        .then((resOk) => dispatch(deleteProductIdAction(resOk)))
         .catch((err) => {
           dispatch(deleteProductError(err))
         })
@@ -96,19 +90,15 @@ export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
   dispatch(createProductLoading())
 
   // TODO: Prepare STATUS CODE!!!
-
   fetch('http://localhost:5000/v1/product/create', {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(refactorData), // body data type must match "Content-Type" header
   })
-    .then((res) => {
-      console.log('Success')
-      const resData = res.json()
-      dispatch(createProductSuccess(resData))
-    })
+    .then((res) => res.json())
+    .then((resOk) => dispatch(createProductSuccess(resOk)))
     .catch((err) => {
       console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
       const debugErrData = {
@@ -153,18 +143,15 @@ export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
   console.log(refactorData)
   dispatch(editProductLoading())
 
-  fetch('http://localhost:5000/v1/product/edit', {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  fetch('http://localhost:5000/v1/product/update', {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(refactorData), // body data type must match "Content-Type" header
   })
-    .then((res) => {
-      console.log('Success')
-      const resData = res.json()
-      dispatch(editProductSuccess(resData))
-    })
+    .then((res) => res.json())
+    .then((resOk) => dispatch(editProductSuccess(resOk)))
     .catch((err) => {
       console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
       const debugErrData = {
@@ -198,7 +185,7 @@ export const editProductError = (errData) => {
 /*
  ******************
  *
- * EDIT PRODUCT
+ * SEARCH PRODUCT
  *
  ******************
  *  */
@@ -206,11 +193,8 @@ export const editProductError = (errData) => {
 export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
   dispatch(searchProductLoading())
   fetch(`http://localhost:5000/v1/product/search?name=${dataName}`)
-    .then((res) => {
-      console.log('Success')
-      const resData = res.json()
-      dispatch(searchProductSuccess(resData))
-    })
+    .then((res) => res.json())
+    .then((resOk) => dispatch(searchProductSuccess(resOk)))
     .catch((err) => {
       console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
       const debugErrData = {
@@ -225,11 +209,8 @@ export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
 export const searchProductIdAsyncAction = (dataId) => (dispatch) => {
   dispatch(searchProductLoading())
   fetch(`http://localhost:5000/v1/product/search?id=${dataId}`)
-    .then((res) => {
-      console.log('Success')
-      const resData = res.json()
-      dispatch(searchProductSuccess(resData))
-    })
+    .then((res) => res.json())
+    .then((resOk) => dispatch(searchProductSuccess(resOk)))
     .catch((err) => {
       console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
       const debugErrData = {

@@ -1,7 +1,7 @@
 const initialState = {
   loading: false,
   success: null,
-  error: true,
+  error: null,
   dataError: null,
   listProducts: [
     {

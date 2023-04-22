@@ -45,15 +45,14 @@ const updateProduct = asyncHandler(async (req, res, next) => {
     descProduct,
     file,
   } = req.body
-
   const updateSelectedProduct = await db.query(
-    'UPDATE product_data  SET  p_name = $1, p_id=$2, p_date = $3, p_count=$4, p_desc = $5, p_img = $6 WHERE p_id = $2',
+    'UPDATE product_data  SET p_name=$1, p_id=$2, p_date = $3, p_count=$4, p_desc = $5, p_img = $6 WHERE p_id = $2',
     [nameProduct, idProduct, dateProduct, countProduct, descProduct, file]
   )
   if (!updateSelectedProduct.rowCount) {
-    res.sendStatus(404)
+    return res.sendStatus(404)
   }
-  res.sendStatus(200)
+  res.json('Success')
 })
 
 const searchProduct = asyncHandler(async (req, res, next) => {
