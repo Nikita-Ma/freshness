@@ -20,12 +20,13 @@ const createProduct = asyncHandler(async (req, res) => {
 
 const deleteProduct = asyncHandler(async (req, res, next) => {
   const { nameProduct, idProduct } = req.body
-  if (nameProduct && idProduct) {
+  if (nameProduct) {
     const deleteProductName = await db.query(
       'DELETE FROM product_data WHERE p_name=$1',
       [nameProduct]
     )
-    return res.json('Product deleted (name&id)')
+    console.log(deleteProductName)
+    return res.json('Product deleted (name)')
   } else if (idProduct) {
     const deleteProductId = await db.query(
       'DELETE FROM product_data WHERE p_id=$1',

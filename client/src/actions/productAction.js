@@ -16,7 +16,7 @@ export const deleteProductAsyncAction =
       console.log(nameProduct)
       const dataJSON = JSON.stringify(nameProduct)
       console.log(dataJSON)
-      fetch('http://localhost:5000/v1/product/deleteProductFromName', {
+      fetch('http://localhost:5000/v1/product/delete', {
         method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const deleteProductAsyncAction =
         })
     } else if (idProduct.length) {
       const dataJSON = JSON.stringify(idProduct)
-      fetch('http://localhost:5000/v1/product/deleteProductFromId', {
+      fetch('http://localhost:5000/v1/product/delete', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
