@@ -72,7 +72,7 @@ const updateProduct = asyncHandler(async (req, res, next) => {
 
 // ! TODO DELETE ON FUTURE || LOGIC ON FRONTEND
 // const searchProduct = asyncHandler(async (req, res, next) => {
-//   const { name, id } = req.query // TODO: Maybe refactor on req.params
+//   const { name, id } = req.query //
 //
 //   if (!(name || id)) {
 //     return res.sendStatus(404)
