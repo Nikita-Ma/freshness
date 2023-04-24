@@ -36,12 +36,45 @@ p {
   padding-bottom: 28%; /* blank for logo*/
 }
 
-.card-yellow {
+.search-form {
+  /* common styles for the entire search bar block*/
+  margin-top: 7%; /* indent from the logo down*/
+}
+
+.search-form__input {
+  /* search string styles*/
+  width: 72%;
+  height: 35px;
+  background: #ffffff;
+  color: #184c51;
+  border: 1px solid #184c51;
+  outline: none;
+  font-size: 12px;
+  padding-left: 2%; /* offset text to the left of the borders*/
+}
+
+.search-form__input::placeholder {
+  /* style for the search bar when clicking on it*/
+  color: #184c51;
+  opacity: 0.7;
+}
+
+.search-form__button {
+  /* style for the button in the search bar block*/
+  width: 11%;
+  height: 35px;
+  margin-bottom: 8%;
+  border: none;
+  background: #184c51;
+  cursor: pointer;
+  color: white;
+}
+.card-green {
   /* general card styles*/
   flex: 1 1 auto; /* TODO: Rewrite this code*/
   max-width: 85.2%;
   max-height: 7.5%;
-  background-color: #e5e07b;
+  background-color: #184c51;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,6 +83,30 @@ p {
 }
 
 .card-yellow {
+  /* general card styles*/
+  flex: 1 1 auto; /* TODO: Rewrite this code*/
+  max-width: 85.2%;
+  background-color: #e5e07b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8.5%; /* indent card from the left edge of the entire page*/
+}
+
+.card-red {
+  /* general card styles*/
+  flex: 1 1 auto; /* TODO: Rewrite this code*/
+  max-width: 85.2%;
+  background-color: #e21616;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8.5%; /* indent card from the left edge of the entire page*/
+}
+
+.card {
   margin-top: 3%;
 }
 
@@ -63,9 +120,18 @@ p {
   width: 90%;
 }
 
+.card__icon_green {
+  width: 130%;
+  float: left;
+}
+
 .card__icon_yellow {
   width: 130%;
   float: left;
+}
+
+.card__text {
+  margin-left: 12%;
 }
 
 .card__text_yellow {

@@ -32,22 +32,36 @@ export const DeletePopup = () => {
       {/*{productState.error ? <h1>{productState.dataError}</h1> : null}*/}
       {/*{productState.loading ? <h1>Loading..</h1> : null}*/}
       {/*{productState.success ? <h1>Success</h1> : null}*/}
-      <input
-        type="text"
-        name={'name'}
-        placeholder={'Enter product name'}
-        onChange={handlerInput}
-      />
-      <input
-        type="number"
-        name={'id'}
-        placeholder={'Enter product ID'}
-        onChange={handlerInput}
-      />
-      <button type={'button'} onClick={deleteProduct}>
-        Delete product
-      </button>
-      <button type={'button'}> Cancel</button>
+      <div className="card">
+        <p className="card__text">DELETE PRODUCT</p>
+        <div
+          className="form"
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <input
+            type="text"
+            name={'name'}
+            className="form__name-input"
+            placeholder="ENTER NAME PRODUCT"
+            onChange={handlerInput}
+          />
+          <input
+            type="text"
+            name={'id'}
+            placeholder={'Enter product ID'}
+            onChange={handlerInput}
+            className="form__id-input"
+          />
+        </div>
+        <div className="btn">
+          <button type={'button'} className="btn__add" onClick={deleteProduct}>
+            DELETE PRODUCT
+          </button>
+          <button type={'button'} className="btn__cansel">
+            CANSEL
+          </button>
+        </div>
+      </div>
     </>
   )
 }
