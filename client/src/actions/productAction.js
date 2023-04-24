@@ -1,4 +1,5 @@
 import { imgToBlob } from '../helpers/imgToBlob'
+import { type } from '@testing-library/user-event/dist/type'
 
 /*
  ******************
@@ -7,47 +8,48 @@ import { imgToBlob } from '../helpers/imgToBlob'
  *
  ******************
  *  */
-export const deleteProductAsyncAction =
-  ({ nameProduct, idProduct }) =>
-  async (dispatch) => {
-    dispatch(deleteProductLoading())
-    if (nameProduct.length) {
-      console.log('Guard', nameProduct.length)
-      console.log(nameProduct)
-      const dataJSON = JSON.stringify(nameProduct)
-      console.log(dataJSON)
-      fetch('http://localhost:5000/v1/product/delete', {
-        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(nameProduct), // body data type must match "Content-Type" header
+export const deleteProductAsyncAction = (product) => async (dispatch) => {
+  console.log({
+    product,
+  })
+  dispatch(deleteProductLoading())
+  if (product.nameProduct.length) {
+    console.log('Guard', product.nameProduct.length)
+    console.log(product.nameProduct)
+    // const dataJSON = JSON.stringify(product)
+    // console.log(dataJSON)
+    fetch('http://localhost:5000/v1/product/delete', {
+      method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(product), // body data type must match "Content-Type" header
+    })
+      .then((res) => res.json())
+      .then((resOk) => dispatch(deleteProductNameAction(resOk)))
+      .catch((err) => {
+        dispatch(deleteProductError(err))
       })
-        .then((res) => res.json())
-        .then((resOk) => dispatch(deleteProductNameAction(resOk)))
-        .catch((err) => {
-          dispatch(deleteProductError(err))
-        })
-    } else if (idProduct.length) {
-      const dataJSON = JSON.stringify(idProduct)
-      fetch('http://localhost:5000/v1/product/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(idProduct), // body data type must match "Content-Type" header
+  } else if (product.idProduct.length) {
+    // const dataJSON = JSON.stringify(idProduct)
+    fetch('http://localhost:5000/v1/product/delete', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(product), // body data type must match "Content-Type" header
+    })
+      .then((res) => res.json())
+      .then((resOk) => dispatch(deleteProductIdAction(resOk)))
+      .catch((err) => {
+        dispatch(deleteProductError(err))
       })
-        .then((res) => res.json())
-        .then((resOk) => dispatch(deleteProductIdAction(resOk)))
-        .catch((err) => {
-          dispatch(deleteProductError(err))
-        })
-    } else {
-      dispatch(deleteProductError(`Isn't correct`))
-    }
+  } else {
+    dispatch(deleteProductError(`Isn't correct`))
   }
+}
 export const deleteProductIdAction = (resData) => {
   console.log('productAction.js', resData)
   return {
@@ -138,9 +140,9 @@ export const createProductError = (errData) => {
 export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
-    file: imgToBlob(dataProduct),
+    file: '/img/asdfghnjmnbvsdfsdfsdf', // ! Func FS saved img/unic-asdfsdgdfg.jpg
   }
-  console.log(refactorData)
+  console.log(JSON.stringify(refactorData))
   dispatch(editProductLoading())
 
   fetch('http://localhost:5000/v1/product/update', {
@@ -190,53 +192,82 @@ export const editProductError = (errData) => {
  ******************
  *  */
 
-export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
-  dispatch(searchProductLoading())
-  fetch(`http://localhost:5000/v1/product/search?name=${dataName}`)
+// export const searchProductNameAsyncAction = (dataName) => (dispatch) => {
+//   dispatch(searchProductLoading())
+//   fetch(`http://localhost:5000/v1/product/search?name=${dataName}`)
+//     .then((res) => res.json())
+//     .then((resOk) => dispatch(searchProductSuccess(resOk)))
+//     .catch((err) => {
+//       console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
+//       const debugErrData = {
+//         name: err.name,
+//         message: err.message,
+//         stack: err.stack,
+//       }
+//       dispatch(searchProductError(debugErrData))
+//     })
+// }
+// //
+// export const searchProductIdAsyncAction = (dataId) => (dispatch) => {
+//   dispatch(searchProductLoading())
+//   fetch(`http://localhost:5000/v1/product/search?id=${dataId}`)
+//     .then((res) => res.json())
+//     .then((resOk) => dispatch(searchProductSuccess(resOk)))
+//     .catch((err) => {
+//       console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
+//       const debugErrData = {
+//         name: err.name,
+//         message: err.message,
+//         stack: err.stack,
+//       }
+//       dispatch(searchProductError(debugErrData))
+//     })
+// }
+//
+// export const searchProductLoading = () => {
+//   return {
+//     type: 'SEARCH_PRODUCT_LOADING',
+//   }
+// }
+// export const searchProductSuccess = (resData) => {
+//   // TODO: Write some functional
+//   return {
+//     type: 'SEARCH_PRODUCT_SUCCESS',
+//     payload: JSON.stringify(resData),
+//   }
+// }
+// export const searchProductError = (errData) => {
+//   return {
+//     type: 'SEARCH_PRODUCT_ERROR',
+//     payload: errData,
+//   }
+// }
+
+export const allProductAsyncAction = () => (dispatch) => {
+  fetch('http://localhost:5000/v1/product/all', {
+    method: 'GET',
+  })
     .then((res) => res.json())
-    .then((resOk) => dispatch(searchProductSuccess(resOk)))
-    .catch((err) => {
-      console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
-      const debugErrData = {
-        name: err.name,
-        message: err.message,
-        stack: err.stack,
-      }
-      dispatch(searchProductError(debugErrData))
-    })
+    .then((resOk) => dispatch(allProductSuccess(resOk)))
+    .catch((e) => dispatch(allProductError(e)))
 }
 
-export const searchProductIdAsyncAction = (dataId) => (dispatch) => {
-  dispatch(searchProductLoading())
-  fetch(`http://localhost:5000/v1/product/search?id=${dataId}`)
-    .then((res) => res.json())
-    .then((resOk) => dispatch(searchProductSuccess(resOk)))
-    .catch((err) => {
-      console.error(`Not created: ${err.name} ${err.message} ${err.stack}`)
-      const debugErrData = {
-        name: err.name,
-        message: err.message,
-        stack: err.stack,
-      }
-      dispatch(searchProductError(debugErrData))
-    })
-}
-
-export const searchProductLoading = () => {
+export const allProductSuccess = (resData) => {
   return {
-    type: 'SEARCH_PRODUCT_LOADING',
-  }
-}
-export const searchProductSuccess = (resData) => {
-  // TODO: Write some functional
-  return {
-    type: 'SEARCH_PRODUCT_SUCCESS',
+    type: 'ALL_PRODUCT_SUCCESS',
     payload: JSON.stringify(resData),
   }
 }
-export const searchProductError = (errData) => {
+
+export const allProductError = (errData) => {
   return {
-    type: 'SEARCH_PRODUCT_ERROR',
-    payload: errData,
+    type: 'ALL_PRODUCT_ERROR',
+    payload: JSON.stringify(errData),
+  }
+}
+
+export const allProductLoading = () => {
+  return {
+    type: 'ALL_PRODUCT_LOADING',
   }
 }

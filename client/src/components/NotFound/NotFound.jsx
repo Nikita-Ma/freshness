@@ -1,7 +1,7 @@
 export const NotFound = () => {
   return (
     <>
-      <h1>Not Found :0</h1>
+      <h1 style={{ color: 'gray' }}>404</h1>
     </>
   )
 }

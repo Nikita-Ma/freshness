@@ -16,7 +16,11 @@ export const DeletePopup = () => {
     }
   }
   const deleteProduct = () => {
-    dispatch(deleteProductAsyncAction({ nameProduct, idProduct }))
+    const readyData = {
+      nameProduct: nameProduct,
+      idProduct: idProduct,
+    }
+    dispatch(deleteProductAsyncAction(readyData))
   }
   // TODO: need some Popup
   const disabledModal = () => {
@@ -25,9 +29,9 @@ export const DeletePopup = () => {
 
   return (
     <>
-      {productState.error ? <h1>{productState.dataError}</h1> : null}
-      {productState.loading ? <h1>Loading..</h1> : null}
-      {productState.success ? <h1>Success</h1> : null}
+      {/*{productState.error ? <h1>{productState.dataError}</h1> : null}*/}
+      {/*{productState.loading ? <h1>Loading..</h1> : null}*/}
+      {/*{productState.success ? <h1>Success</h1> : null}*/}
       <input
         type="text"
         name={'name'}

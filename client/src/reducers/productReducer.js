@@ -1,33 +1,11 @@
+import { allProductSuccess } from '../actions/productAction'
+
 const initialState = {
   loading: false,
   success: null,
   error: null,
   dataError: null,
-  listProducts: [
-    {
-      nameProduct: 'Water',
-      idProduct: 12312312312451,
-      dateProduct: '21.11.1009',
-      countProduct: 25,
-      descProduct: 'a type specimen book. It has  not  five centuries, but a',
-    },
-    {
-      nameProduct: 'Bread',
-      idProduct: 21509876,
-      dateProduct: '21.11.1309',
-      countProduct: 1,
-      descProduct: ' a type specimen book. It has  not  five centuries, but a',
-      img: '../../public/logo512.png',
-    },
-    {
-      nameProduct: 'Dalt',
-      idProduct: 12312312312451,
-      dateProduct: '21.11.2509',
-      countProduct: 215,
-      descProduct: ' a type specimen book. It has  not  five centuries, but a',
-      img: '../../public/logo512.png',
-    },
-  ],
+  listProducts: [],
 }
 
 export const productReducer = (state = initialState, action) => {
@@ -35,7 +13,12 @@ export const productReducer = (state = initialState, action) => {
     case 'DELETE_PRODUCT_ID':
       return { ...state, loading: false, success: true }
     case 'DELETE_PRODUCT_NAME':
-      return { ...state, loading: false, success: true }
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        listProducts: [...action.payload],
+      }
     case 'DELETE_PRODUCT_LOADING':
       return { ...state, loading: true }
     case 'DELETE_PRODUCT_ERROR':
@@ -73,10 +56,28 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: true,
+        dataError: null,
+        listProducts: action.payload,
+      }
+    // case 'SEARCH_PRODUCT_LOADING':
+    //   return { ...state, loading: true }
+    case 'ALL_PRODUCT_LOADING':
+      return { ...state, loading: true }
+    case 'ALL_PRODUCT_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        dataError: null,
+        listProducts: [...action.payload],
+      }
+    case 'ALL_PRODUCT_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
         dataError: action.payload,
       }
-    case 'SEARCH_PRODUCT_LOADING':
-      return { ...state, loading: true }
     default:
       return state
   }

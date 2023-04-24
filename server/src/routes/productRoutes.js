@@ -14,7 +14,7 @@ const routes = express.Router()
 routes.route('/create').post(createProduct)
 routes.route('/delete').delete(deleteProduct)
 routes.route('/update').put(updateProduct)
-routes.route('/search').get(searchProduct)
+// ! routes.route('/search').get(searchProduct)  TODO DELETE ON FUTURE || LOGIC ON FRONTEND
 routes.route('/all').get(allList)
 routes.route('/warning').get(warningList)
 routes.route('/hot').get(hotList)

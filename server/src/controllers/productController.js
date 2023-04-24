@@ -1,3 +1,5 @@
+//TODO: RETURN ALL PRODUCT EDIT/DELETE/CREATE ETC
+
 const asyncHandler = require('express-async-handler')
 const db = require('../config/db')
 
@@ -15,7 +17,9 @@ const createProduct = asyncHandler(async (req, res) => {
     'INSERT INTO product_data ( p_name, p_id, p_date, p_count, p_desc, p_img) VALUES ($1, $2, $3, $4, $5, $6)',
     [nameProduct, idProduct, dateProduct, countProduct, descProduct, file]
   )
-  return res.json('Product Create')
+  const allProductList = await db.query('SELECT * FROM product_data')
+
+  return res.json(allProductList.rows)
 })
 
 const deleteProduct = asyncHandler(async (req, res, next) => {
@@ -25,14 +29,22 @@ const deleteProduct = asyncHandler(async (req, res, next) => {
       'DELETE FROM product_data WHERE p_name=$1',
       [nameProduct]
     )
-    console.log(deleteProductName)
-    return res.json('Product deleted (name)')
+    if (!deleteProductName.rowCount) {
+      return res.json('Name not Found')
+    }
+    const allProductList = await db.query('SELECT * FROM product_data')
+
+    return res.json(allProductList.rows)
   } else if (idProduct) {
     const deleteProductId = await db.query(
       'DELETE FROM product_data WHERE p_id=$1',
       [idProduct]
     )
-    return res.json('Product deleted(id)')
+    if (!deleteProductId.rowCount) {
+      return res.json('ID not Found')
+    }
+    const allProductList = await db.query('SELECT * FROM product_data')
+    return res.json(allProductList.rows)
   }
   return res.sendStatus(400).json('Required input')
 })
@@ -53,41 +65,44 @@ const updateProduct = asyncHandler(async (req, res, next) => {
   if (!updateSelectedProduct.rowCount) {
     return res.sendStatus(404)
   }
-  res.json('Success')
+  const allProductList = await db.query('SELECT * FROM product_data')
+
+  return res.json(allProductList.rows)
 })
 
-const searchProduct = asyncHandler(async (req, res, next) => {
-  const { name, id } = req.query // TODO: Maybe refactor on req.params
-
-  if (!(name || id)) {
-    return res.sendStatus(404)
-  }
-
-  if (name) {
-    const findProductName = await db.query(
-      'SELECT * FROM product_data WHERE p_name = $1',
-      [name]
-    )
-    if (!findProductName.rows[0]) {
-      return res.sendStatus(404)
-    }
-    res.json(findProductName.rows[0])
-  }
-
-  if (id) {
-    //*
-    // * Search Product ID
-    // */
-    const findProductId = await db.query(
-      'SELECT * FROM product_data WHERE p_id = $1',
-      [id]
-    )
-    if (!findProductId.rows[0]) {
-      return res.sendStatus(404)
-    }
-    res.json(findProductId.rows[0])
-  }
-})
+// ! TODO DELETE ON FUTURE || LOGIC ON FRONTEND
+// const searchProduct = asyncHandler(async (req, res, next) => {
+//   const { name, id } = req.query // TODO: Maybe refactor on req.params
+//
+//   if (!(name || id)) {
+//     return res.sendStatus(404)
+//   }
+//
+//   if (name) {
+//     const findProductName = await db.query(
+//       'SELECT * FROM product_data WHERE p_name = $1',
+//       [name]
+//     )
+//     if (!findProductName.rows[0]) {
+//       return res.sendStatus(404)
+//     }
+//     res.json(findProductName.rows[0])
+//   }
+//
+//   if (id) {
+//     //*
+//     // * Search Product ID
+//     // */
+//     const findProductId = await db.query(
+//       'SELECT * FROM product_data WHERE p_id = $1',
+//       [id]
+//     )
+//     if (!findProductId.rows[0]) {
+//       return res.sendStatus(404)
+//     }
+//     res.json(findProductId.rows[0])
+//   }
+// })
 
 const allList = asyncHandler(async (req, res, next) => {
   const fullList = await db.query('SELECT * FROM product_data')
@@ -112,7 +127,7 @@ module.exports = {
   createProduct,
   deleteProduct,
   updateProduct,
-  searchProduct,
+  // ! searchProduct,  TODO DELETE ON FUTURE || LOGIC ON FRONTEND
   allList,
   warningList,
   hotList,
