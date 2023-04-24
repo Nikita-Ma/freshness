@@ -1,20 +1,33 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './style.css'
 
 export const SearchBar = () => {
   const [inputValue, setInputValue] = useState(null)
+  const productState = useSelector((state) => state.productReducer)
+  console.log(productState)
   const dispatch = useDispatch()
   const handlerInput = (e) => {
-    if (Number.isNaN(Number(e.target.value))) {
-      // dispatch(searchProductNameAsyncAction(e.target.value))
-    } else {
-      // dispatch(searchProductIdAsyncAction(e.target.value))
+    if (e.target.value > 4) {
+      if (Number.isNaN(Number(e.target.value))) {
+        setInputValue(
+          productState.listProducts.find(
+            (item) => item.p_name === e.target.value
+          )
+        )
+        // dispatch(searchProductNameAsyncAction(e.target.value))
+      } else {
+        // dispatch(searchProductIdAsyncAction(e.target.value))
+        setInputValue(
+          productState.listProducts.find((item) => item.p_id === e.target.value)
+        )
+      }
     }
   }
 
   return (
     <>
+      {inputValue ? alert(JSON.stringify(inputValue)) : null}
       <header className="header">
         <div className="logo"></div>
         <div className="search-form">

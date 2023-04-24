@@ -84,6 +84,7 @@ p {
 
 .card-yellow {
   /* general card styles*/
+  margin-top: 10px;
   flex: 1 1 auto; /* TODO: Rewrite this code*/
   max-width: 85.2%;
   background-color: #e5e07b;

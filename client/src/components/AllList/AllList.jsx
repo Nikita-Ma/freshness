@@ -1,70 +1,85 @@
 import './style.css'
 import { Link } from 'react-router-dom'
 import { SearchBar } from '../SearchBar/SearchBar'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { allProductAsyncAction } from '../../actions/productAction'
 
 export const AllList = () => {
   //TODO pag. useSelector (data on server)
+  const productState = useSelector((state) => state.productReducer)
+  console.log(productState)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(allProductAsyncAction())
+  }, [])
+
   return (
     <>
       <SearchBar />
-      <div className="card-yellow">
-        <ul className="card__bar">
-          <li className="card__img">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 20H20V0H0V20ZM18.5185 14.2658L13.3624 9.10968L15.5198 6.95227L18.5185 9.95069V14.2658ZM1.48148 1.48148H18.5185V7.85556L15.52 4.85694L12.3148 8.06213L7.68518 3.4325L1.48148 9.6362V1.48148ZM1.48148 11.7315L7.68518 5.52778L18.5185 16.3611V18.5185H1.48148V11.7315Z"
-                fill="#184C51"
-              />
-            </svg>
-          </li>
-          <li className="card__text_yellow">
-            <p>NAME | ID</p>
-            <div className="card__inf">
-              <p className="inf__disposal">disposal:83</p>
-              <p className="inf__author">author |</p>
-              <p className="inf__date">date</p>
-            </div>
-          </li>
-          <li className="card__btn">
-            <Link to="/" className="btn__edit">
-              <svg
-                width="25"
-                height="25"
-                viewBox="0 0 25 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="25" height="25" fill="#184C51" />
-                <path
-                  d="M15.5 7L14.25 8.25L16.75 10.75L18 9.5L15.5 7ZM13 9.5L8 14.5V17H10.5L15.5 12L13 9.5Z"
-                  fill="#E5E07B"
-                />
-              </svg>
-            </Link>
-            <Link to="/" className="btn__deleted">
-              <svg
-                width="25"
-                height="25"
-                viewBox="0 0 25 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="25" height="25" fill="#184C51" />
-                <path
-                  d="M11.75 7C11.0625 7 10.5 7.5625 10.5 8.25H9.25C8.5625 8.25 8 8.8125 8 9.5H16.75C16.75 8.8125 16.1875 8.25 15.5 8.25H14.25C14.25 7.5625 13.6875 7 13 7H11.75ZM9.25 10.75V16.7625C9.25 16.9 9.35 17 9.4875 17H15.275C15.4125 17 15.5125 16.9 15.5125 16.7625V10.75H14.2625V15.125C14.2625 15.475 13.9875 15.75 13.6375 15.75C13.2875 15.75 13.0125 15.475 13.0125 15.125V10.75H11.7625V15.125C11.7625 15.475 11.4875 15.75 11.1375 15.75C10.7875 15.75 10.5125 15.475 10.5125 15.125V10.75H9.2625H9.25Z"
-                  fill="#E5E07B"
-                />
-              </svg>
-            </Link>
-          </li>
-        </ul>
-      </div>
+      {productState.listProducts.map((item) => {
+        return (
+          <div className="card-yellow" key={item.p_id}>
+            <ul className="card__bar">
+              <li className="card__img">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 20H20V0H0V20ZM18.5185 14.2658L13.3624 9.10968L15.5198 6.95227L18.5185 9.95069V14.2658ZM1.48148 1.48148H18.5185V7.85556L15.52 4.85694L12.3148 8.06213L7.68518 3.4325L1.48148 9.6362V1.48148ZM1.48148 11.7315L7.68518 5.52778L18.5185 16.3611V18.5185H1.48148V11.7315Z"
+                    fill="#184C51"
+                  />
+                </svg>
+              </li>
+              <li className="card__text_yellow">
+                <p>
+                  {item.p_name} | {item.p_id}
+                </p>
+                <div className="card__inf">
+                  <p className="inf__disposal">disposal:{item.p_count}</p>
+                  <p className="inf__date">Date{item.p_date}</p>
+                </div>
+              </li>
+              <li className="card__btn">
+                <Link to="/" className="btn__edit">
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 25 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="25" height="25" fill="#184C51" />
+                    <path
+                      d="M15.5 7L14.25 8.25L16.75 10.75L18 9.5L15.5 7ZM13 9.5L8 14.5V17H10.5L15.5 12L13 9.5Z"
+                      fill="#E5E07B"
+                    />
+                  </svg>
+                </Link>
+                <Link to="/" className="btn__deleted">
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 25 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="25" height="25" fill="#184C51" />
+                    <path
+                      d="M11.75 7C11.0625 7 10.5 7.5625 10.5 8.25H9.25C8.5625 8.25 8 8.8125 8 9.5H16.75C16.75 8.8125 16.1875 8.25 15.5 8.25H14.25C14.25 7.5625 13.6875 7 13 7H11.75ZM9.25 10.75V16.7625C9.25 16.9 9.35 17 9.4875 17H15.275C15.4125 17 15.5125 16.9 15.5125 16.7625V10.75H14.2625V15.125C14.2625 15.475 13.9875 15.75 13.6375 15.75C13.2875 15.75 13.0125 15.475 13.0125 15.125V10.75H11.7625V15.125C11.7625 15.475 11.4875 15.75 11.1375 15.75C10.7875 15.75 10.5125 15.475 10.5125 15.125V10.75H9.2625H9.25Z"
+                      fill="#E5E07B"
+                    />
+                  </svg>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )
+      })}
 
       <div className="tab-bar">
         <ul className="menu-list">

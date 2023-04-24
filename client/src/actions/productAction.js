@@ -255,14 +255,14 @@ export const allProductAsyncAction = () => (dispatch) => {
 export const allProductSuccess = (resData) => {
   return {
     type: 'ALL_PRODUCT_SUCCESS',
-    payload: JSON.stringify(resData),
+    payload: resData,
   }
 }
 
 export const allProductError = (errData) => {
   return {
     type: 'ALL_PRODUCT_ERROR',
-    payload: JSON.stringify(errData),
+    payload: errData,
   }
 }
 
