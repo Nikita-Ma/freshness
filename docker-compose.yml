@@ -1,0 +1,49 @@
+#version: "3.9"
+#services:
+#  postgres:
+#    image: postgres:13.3
+#    environment:
+#      POSTGRES_DB: "freshness"
+#      POSTGRES_USER: "postgres"
+#      POSTGRES_PASSWORD: "1234"
+#    ports:
+#      - "5000:5000"
+#
+#
+#
+#Version
+version: '3'
+
+#services
+services:
+
+  #name-another
+  frontend:
+    #build-images-from-Dockerfile (create)
+    build: ./client
+    #replace-files-on-files-on-PC
+    volumes:
+      - /app/node_modules
+      #repalce foolder FRONTEND on foolder APP
+      - ./client:/app
+    ports:
+      - "3000:3000"
+      #restart if service stopped
+    restart: always
+    #name-another
+  server:
+    #build-images-from-Dockerfile (create)
+    build: ./server
+    ports:
+      - "5000:5000"
+
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "freshness"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1234"
+
+    ports:
+      - "5432:5432"
+    restart: always

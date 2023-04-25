@@ -33,7 +33,7 @@ const deleteProduct = asyncHandler(async (req, res, next) => {
       return res.json('Name not Found')
     }
     const allProductList = await db.query('SELECT * FROM product_data')
-
+    co
     return res.json(allProductList.rows)
   } else if (idProduct) {
     const deleteProductId = await db.query(
