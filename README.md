@@ -1,7 +1,7 @@
 # FRESHNESS
 ## <place on img>
 ### Client | Backend | Design | Copyrighting 
-# Client  (v.0.0.0)
+# Client  (v.0.1.1)
 ## DOCS
 ###  Install 
 
@@ -14,7 +14,7 @@
  
 ---
 
-# Backend  (v.0.0.0)
+# Backend  (v.0.1.1)
 
 ## DOCS
 
