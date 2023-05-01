@@ -1,5 +1,3 @@
-//TODO: RETURN ALL PRODUCT EDIT/DELETE/CREATE ETC
-
 const asyncHandler = require('express-async-handler')
 const db = require('../config/db')
 
@@ -70,40 +68,6 @@ const updateProduct = asyncHandler(async (req, res, next) => {
   return res.json(allProductList.rows)
 })
 
-// ! TODO DELETE ON FUTURE || LOGIC ON FRONTEND
-// const searchProduct = asyncHandler(async (req, res, next) => {
-//   const { name, id } = req.query //
-//
-//   if (!(name || id)) {
-//     return res.sendStatus(404)
-//   }
-//
-//   if (name) {
-//     const findProductName = await db.query(
-//       'SELECT * FROM product_data WHERE p_name = $1',
-//       [name]
-//     )
-//     if (!findProductName.rows[0]) {
-//       return res.sendStatus(404)
-//     }
-//     res.json(findProductName.rows[0])
-//   }
-//
-//   if (id) {
-//     //*
-//     // * Search Product ID
-//     // */
-//     const findProductId = await db.query(
-//       'SELECT * FROM product_data WHERE p_id = $1',
-//       [id]
-//     )
-//     if (!findProductId.rows[0]) {
-//       return res.sendStatus(404)
-//     }
-//     res.json(findProductId.rows[0])
-//   }
-// })
-
 const allList = asyncHandler(async (req, res, next) => {
   const fullList = await db.query('SELECT * FROM product_data')
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -134,7 +98,6 @@ module.exports = {
   createProduct,
   deleteProduct,
   updateProduct,
-  // ! searchProduct,  TODO DELETE ON FUTURE || LOGIC ON FRONTEND
   allList,
   warningList,
   hotList,

@@ -41,7 +41,7 @@ const PORT = process.env.PORT || 3000
 app.listen(
   PORT,
   console.log(
-    `[Server] Server running HOST ${process.env.PGHOST} in ${process.env.PORT} on ${PORT}`
+    `[Server] Server running HOST ${process.env.LOCAL_PGHOST} in ${process.env.PORT} on ${PORT}`
       .bold.green.underline
   )
 )
