@@ -4,7 +4,7 @@ const Pool = require('pg').Pool
 function connectDB() {
   // TODO: insert values in .ENV && write docs
   const pool = new Pool({
-    host: 'localhost',
+    host: '192.168.0.1',
     port: 5432,
     database: 'postgres',
     user: 'postgres',

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon ./src/server.js",
+    "install": "npm, install",
     "lint": "eslint --fix",
     "pretty": "prettier --write .",
     "prepare": "cd .. && husky install server/.husky"
