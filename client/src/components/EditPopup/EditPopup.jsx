@@ -1,9 +1,6 @@
 import { useRef, useState } from 'react'
-import {
-  createProductAsyncAction,
-  editProductAsyncAction,
-} from '../../actions/productAction'
-import { useDispatch, useSelector } from 'react-redux'
+import { editProductAsyncAction } from '../../actions/productAction'
+import { useDispatch } from 'react-redux'
 // * Function params in FUTURE --> product, setProduct
 export const EditPopup = () => {
   const [product, setProduct] = useState({

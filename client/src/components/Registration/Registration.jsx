@@ -13,7 +13,6 @@ export const Registration = () => {
    */
   const checkIdState = useSelector((state) => state.checkIdReducer)
   const dispatch = useDispatch()
-  console.log(checkIdState)
   const handlerInviteCode = (e) => {
     setInputValue(e.target.value)
     if (inputValue.length === 10) {
@@ -24,12 +23,10 @@ export const Registration = () => {
   }
 
   useEffect(() => {
-    console.log('UseEffect')
     if (inputStatus) {
       dispatch(checkIdAsyncAction(JSON.stringify(inputValue)))
     }
   }, [inputStatus])
-  console.log('In REGISTER', checkIdState.alertStatusInfo)
   return (
     <>
       <h2>

@@ -1,5 +1,3 @@
-import { allProductSuccess } from '../actions/productAction'
-
 const initialState = {
   loading: false,
   success: null,
