@@ -1,31 +1,35 @@
 export const checkIdAsyncAction = (dataId) => async (dispatch) => {
-  console.log(dataId)
-  try {
-    const fetchDataId = await fetch(
-      'https://jsonplaceholder.typicode.com/posts',
-      {
+  if (document.cookie.split('=')[1] === undefined) {
+    // ? TODO EXAMPLE DATA: ss:44:51:411
+    const createData = {
+      u_name: dataId.split(':')[0],
+      u_password: dataId.split(':')[1],
+      u_data: dataId.split(':')[2],
+      u_id: dataId.split(':')[3],
+    }
+    try {
+      const fetchDataId = await fetch('http://localhost:5000/v1/register', {
         method: 'POST',
-        // mode: 'follow',
-        cache: 'default',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Basic <credentials>',
+          'Access-Control-Allow-Origin': 'http://localhost:3000',
+          'Access-Control-Allow-Credentials': 'true',
         },
-        redirect: 'error',
-        referrerPolicy: 'no-referrer',
-        body: dataId,
-      }
-    )
-    const resData = await fetchDataId.json()
-    dispatch(checkIdActionSuccess(resData))
-  } catch (e) {
-    console.error(`Some error ${e.stack}, ${e.message}`)
-    dispatch(checkIdActionError(e))
+        body: JSON.stringify(createData),
+      })
+      const resData = await fetchDataId.json()
+      dispatch(checkIdActionSuccess(resData))
+    } catch (e) {
+      console.error(`Some error ${e.stack}, ${e.message}`)
+      dispatch(checkIdActionError(e))
+    }
   }
 }
 export const checkIdActionSuccess = (data) => {
-  console.log(data)
+  console.log(JSON.stringify(data))
+
+  document.cookie = `token=${data.token};max-age=600000`
   return {
     type: 'CHECK_ID_SUCCESS',
   }
