@@ -16,7 +16,6 @@ const createProduct = asyncHandler(async (req, res) => {
     [nameProduct, idProduct, dateProduct, countProduct, descProduct, file]
   )
   const allProductList = await db.query('SELECT * FROM product_data')
-
   return res.json(allProductList.rows)
 })
 

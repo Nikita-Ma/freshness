@@ -15,7 +15,7 @@ const registerController = expressAsyncHandler(async (req, res, next) => {
       [u_name]
     )
     if (checkUser.rows.length) {
-      return res.send('User Already Exist. Please Login')
+      return res.status(404).json('User Already Exist. Please Login')
     }
     const encryptedPassword = await bcrypt.hash(u_password, 10)
 
@@ -25,9 +25,16 @@ const registerController = expressAsyncHandler(async (req, res, next) => {
     )
 
     const token = jwt.sign({ user_id: u_data, u_name }, process.env.TOKEN_KEY, {
-      expiresIn: '2h',
+      expiresIn: '365d',
     })
-    res.set('Authorization', `Bearer ${token}`)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Credentials', 'true')
+    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+    )
+    res.setHeader('Authorization', `Bearer ${token}`)
     const user = {}
     Object.assign(user, { token })
     // return new user

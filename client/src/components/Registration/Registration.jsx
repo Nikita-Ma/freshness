@@ -15,7 +15,7 @@ export const Registration = () => {
   const dispatch = useDispatch()
   const handlerInviteCode = (e) => {
     setInputValue(e.target.value)
-    if (inputValue.length === 10) {
+    if (inputValue.length === 11) {
       setInputStatus(true)
     } else {
       setInputStatus(false)

@@ -13,8 +13,9 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, x-Requested-With, Content-Type, Accept'
+    'Origin, x-Requested-With, Content-Type, Accept, *'
   )
+
   next()
 })
 
@@ -26,7 +27,7 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.json('Api running..')
 })
-app.use('/v1/login', loginRoutes)
+// app.use('/v1/login', loginRoutes)
 // TODO: REFACTOR SAVE IMG ON DIR NOT DATABASE!!
 app.use('/v1/product', productRoutes)
 
