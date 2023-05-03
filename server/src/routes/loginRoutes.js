@@ -4,6 +4,7 @@ const getLogin = require('../controllers/loginController')
 
 const router = express.Router()
 
-router.route('/').get(getLogin)
+const verifyToken = require('../middleware/authMiddleware')
+router.route('/').post(getLogin)
 
 module.exports = router

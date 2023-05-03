@@ -10,7 +10,7 @@ const createProduct = asyncHandler(async (req, res) => {
     descProduct,
     file,
   } = req.body
-
+  console.log('a')
   const addNewProduct = await db.query(
     'INSERT INTO product_data ( p_name, p_id, p_date, p_count, p_desc, p_img) VALUES ($1, $2, $3, $4, $5, $6)',
     [nameProduct, idProduct, dateProduct, countProduct, descProduct, file]
@@ -30,7 +30,7 @@ const deleteProduct = asyncHandler(async (req, res, next) => {
       return res.json('Name not Found')
     }
     const allProductList = await db.query('SELECT * FROM product_data')
-    co
+
     return res.json(allProductList.rows)
   } else if (idProduct) {
     const deleteProductId = await db.query(

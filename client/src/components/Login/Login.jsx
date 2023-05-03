@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import { verifyTokenClient } from '../../helpers/verifyTokenClient'
 import { useDispatch, useSelector } from 'react-redux'
-import { createIdAsyncAction } from '../../actions/checkIdAction'
+import { loginAsyncAction } from '../../actions/checkIdAction'
 
-export const Registration = () => {
+export const Login = () => {
   /*
    * Use Hooks
    */
@@ -23,11 +24,12 @@ export const Registration = () => {
   }
   useEffect(() => {
     if (inputStatus) {
-      dispatch(createIdAsyncAction(JSON.stringify(inputValue)))
+      dispatch(loginAsyncAction(JSON.stringify(inputValue)))
     }
   }, [inputStatus])
   return (
     <>
+      <h1>Login</h1>
       <h2>
         {checkIdState.alertStatusSuccess
           ? 'Congratulations you have succeeded!'

@@ -2,7 +2,6 @@ const express = require('express')
 const colors = require('colors')
 const bodyParser = require('express')
 const app = express()
-
 const registerRoutes = require('./routes/registerRoutes')
 const loginRoutes = require('./routes/loginRoutes')
 const productRoutes = require('./routes/productRoutes')
@@ -10,12 +9,10 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./utils/connectDB')
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, x-Requested-With, Content-Type, Accept, *'
-  )
-
+  res.setHeader('Access-Control-Allow-Origin', 'http://example.com')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  res.setHeader('Access-Control-Allow-Credentials', true)
   next()
 })
 
@@ -32,6 +29,7 @@ app.get('/', (req, res) => {
 app.use('/v1/product', productRoutes)
 
 app.use('/v1/register', registerRoutes)
+app.use('/v1/login', loginRoutes)
 // * MIDDLEWARE
 app.use(notFound)
 

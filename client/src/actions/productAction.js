@@ -66,6 +66,7 @@ export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
     file: imgToBlob(dataProduct.file),
+    token: document.cookie.split('=')[1],
   }
   dispatch(createProductLoading())
 
@@ -78,7 +79,12 @@ export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
     body: JSON.stringify(refactorData), // body data type must match "Content-Type" header
   })
     .then((res) => res.json())
-    .then((resOk) => dispatch(createProductSuccess(resOk)))
+    .then((resData) => {
+      console.log(resData.massage)
+      resData.massage
+        ? dispatch(createProductError(resData))
+        : dispatch(createProductSuccess(resData))
+    })
     .catch((err) => {
       const debugErrData = {
         name: err.name,
@@ -89,6 +95,7 @@ export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
     })
 }
 export const createProductSuccess = (resData) => {
+  console.log(resData)
   return {
     type: 'CREATE_PRODUCT_SUCCESS',
     payload: JSON.stringify(resData),

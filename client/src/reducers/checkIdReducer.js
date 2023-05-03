@@ -27,6 +27,24 @@ export const checkIdReducer = (state = initialState, action) => {
         alertStatusError: true,
         alertStatusInfo: action.payload,
       }
+    case 'CREATE_ID_SUCCESS':
+      return {
+        state,
+        alertStatusSuccess: true,
+        alertStatusInfo: action.payload,
+      }
+    case 'CREATE_ID_WARNING':
+      return {
+        ...state,
+        alertStatusWarning: true,
+        alertStatusInfo: action.payload,
+      }
+    case 'CREATE_ID_ERROR':
+      return {
+        ...state,
+        alertStatusError: true,
+        alertStatusInfo: action.payload,
+      }
     default:
       return state
   }
