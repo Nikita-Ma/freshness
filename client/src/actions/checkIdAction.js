@@ -25,6 +25,7 @@ export const checkIdAsyncAction = (dataId) => async (dispatch) => {
       dispatch(checkIdActionError(e))
     }
   }
+  dispatch(checkIdActionError(`You're already register`))
 }
 export const checkIdActionSuccess = (data) => {
   console.log(JSON.stringify(data))

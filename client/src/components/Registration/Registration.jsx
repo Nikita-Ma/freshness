@@ -21,7 +21,6 @@ export const Registration = () => {
       setInputStatus(false)
     }
   }
-  console.log('rerender')
   useEffect(() => {
     if (inputStatus) {
       dispatch(checkIdAsyncAction(JSON.stringify(inputValue)))
