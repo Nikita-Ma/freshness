@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const getLogin = asyncHandler(async (req, res) => {
   const findPerson = await db.query('SELECT * FROM user_data')
-  const dataId = req.body.u_id.slice(0, req.body.u_id.length - 1)
+  const dataId = req.body.u_id
   const checkId = findPerson.rows.find((dataObj) => dataObj.u_id === dataId)
   console.log(checkId)
   if (!checkId) {

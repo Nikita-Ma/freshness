@@ -27,15 +27,8 @@ const registerController = expressAsyncHandler(async (req, res, next) => {
     const token = jwt.sign({ user_id: u_data, u_name }, process.env.TOKEN_KEY, {
       expiresIn: '365d',
     })
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Credentials', 'true')
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-    )
-    res.setHeader('Authorization', `Bearer ${token}`)
     const user = {}
+
     Object.assign(user, { token })
     // return new user
     res.status(201).json(user)

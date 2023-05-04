@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const colors = require('colors')
 const bodyParser = require('express')
 const app = express()
@@ -8,13 +9,7 @@ const productRoutes = require('./routes/productRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./utils/connectDB')
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://example.com')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  next()
-})
+app.use(cors())
 
 // * Connect DataBase
 connectDB()

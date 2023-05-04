@@ -3,7 +3,6 @@ export const createIdAsyncAction = (dataId) => async (dispatch) => {
     document.cookie.split('=')[1] === 'undefined' ||
     document.cookie.split('=')[1] === undefined
   ) {
-    console.log(dataId.split(':')[3].slice(0, dataId.split(':')[3].length - 1))
     // ? TODO EXAMPLE DATA: 21:44:51:433
     const createData = {
       u_name: dataId.split(':')[0].slice(1, dataId.split(':')[0].length),
@@ -17,7 +16,6 @@ export const createIdAsyncAction = (dataId) => async (dispatch) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Basic <credentials>',
           'Access-Control-Allow-Origin': 'http://localhost:3000',
           'Access-Control-Allow-Credentials': 'true',
         },
