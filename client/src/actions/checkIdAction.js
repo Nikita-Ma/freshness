@@ -4,13 +4,14 @@ export const createIdAsyncAction = (dataId) => async (dispatch) => {
     document.cookie.split('=')[1] === undefined
   ) {
     console.log('SOSI HYI')
-    // ? TODO EXAMPLE DATA: ss11:44:51:4
+    // ? TODO EXAMPLE DATA: 2211:44:51:4
     const createData = {
       u_name: dataId.split(':')[0],
       u_password: dataId.split(':')[1],
       u_data: dataId.split(':')[2],
-      u_id: dataId.split(':')[3],
+      u_id: dataId.split(':')[3].slice(0, 1),
     }
+
     try {
       const fetchDataId = await fetch('http://localhost:5000/v1/register', {
         method: 'POST',

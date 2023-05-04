@@ -20,8 +20,8 @@ const registerController = expressAsyncHandler(async (req, res, next) => {
     const encryptedPassword = await bcrypt.hash(u_password, 10)
 
     const createUser = await db.query(
-      'INSERT INTO user_data (u_name, u_password, u_data) VALUES ($1, $2, $3)',
-      [u_name, encryptedPassword, u_data]
+      'INSERT INTO user_data (u_name, u_password, u_data, u_id) VALUES ($1, $2, $3, $4)',
+      [u_name, encryptedPassword, u_data, u_id]
     )
 
     const token = jwt.sign({ user_id: u_data, u_name }, process.env.TOKEN_KEY, {
