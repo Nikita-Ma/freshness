@@ -3,13 +3,13 @@ export const createIdAsyncAction = (dataId) => async (dispatch) => {
     document.cookie.split('=')[1] === 'undefined' ||
     document.cookie.split('=')[1] === undefined
   ) {
-    console.log('SOSI HYI')
-    // ? TODO EXAMPLE DATA: 2211:44:51:4
+    console.log(dataId.split(':')[3].slice(0, dataId.split(':')[3].length - 1))
+    // ? TODO EXAMPLE DATA: 21:44:51:433
     const createData = {
-      u_name: dataId.split(':')[0],
+      u_name: dataId.split(':')[0].slice(1, dataId.split(':')[0].length),
       u_password: dataId.split(':')[1],
       u_data: dataId.split(':')[2],
-      u_id: dataId.split(':')[3].slice(0, 1),
+      u_id: dataId.split(':')[3].slice(0, dataId.split(':')[3].length - 1),
     }
 
     try {
@@ -55,10 +55,10 @@ export const loginAsyncAction = (dataId) => async (dispatch) => {
   ) {
     // ? TODO EXAMPLE DATA: qw:44:5561:2
     const createData = {
-      u_name: dataId.split(':')[0],
+      u_name: dataId.split(':')[0].slice(1, dataId.split(':')[0].length),
       u_password: dataId.split(':')[1],
       u_data: dataId.split(':')[2],
-      u_id: dataId.split(':')[3],
+      u_id: dataId.split(':')[3].slice(0, dataId.split(':')[3].length - 1),
     }
     try {
       const fetchDataId = await fetch('http://localhost:5000/v1/login', {

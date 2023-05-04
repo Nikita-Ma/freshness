@@ -18,6 +18,7 @@ export const DeletePopup = () => {
     const readyData = {
       nameProduct: nameProduct,
       idProduct: idProduct,
+      token: document.cookie.split('=')[1],
     }
     dispatch(deleteProductAsyncAction(readyData))
   }

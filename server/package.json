@@ -8,6 +8,7 @@
     "install": "npm, install",
     "lint": "eslint --fix",
     "pretty": "prettier --write .",
+    "debug": "nodemon --inspect ./src/server.js",
     "prepare": "cd .. && husky install server/.husky"
   },
   "keywords": [

@@ -20,7 +20,6 @@ const createProduct = asyncHandler(async (req, res) => {
 })
 
 const deleteProduct = asyncHandler(async (req, res, next) => {
-  console.log(req)
   const { nameProduct, idProduct } = req.body
   if (nameProduct) {
     const deleteProductName = await db.query(

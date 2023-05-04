@@ -11,8 +11,8 @@ const registerController = expressAsyncHandler(async (req, res, next) => {
       res.status(400).send('Request all input')
     }
     const checkUser = await db.query(
-      'SELECT * FROM user_data WHERE u_name = $1',
-      [u_name]
+      'SELECT * FROM user_data WHERE u_id = $1',
+      [u_id]
     )
     if (checkUser.rows.length) {
       return res.status(404).json('User Already Exist. Please Login')

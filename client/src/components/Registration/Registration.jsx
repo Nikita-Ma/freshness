@@ -39,6 +39,7 @@ export const Registration = () => {
           ? `Some Error ${checkIdState.alertStatusInfo}`
           : ''}
       </h2>
+      <h3> example 21:44:51:553</h3>
       <input
         type="text"
         placeholder="format: market-sm-id"
