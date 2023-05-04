@@ -69,13 +69,7 @@ const updateProduct = asyncHandler(async (req, res, next) => {
 
 const allList = asyncHandler(async (req, res, next) => {
   const fullList = await db.query('SELECT * FROM product_data')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-  )
+
   return res.json(fullList.rows)
 })
 
