@@ -9,12 +9,12 @@ const {
   hotList,
 } = require('../controllers/productController')
 const routes = express.Router()
-// TODO: Create controllers product
-routes.route('/create').post(verifyToken).post(createProduct)
-routes.route('/delete').post(verifyToken).delete(deleteProduct)
-routes.route('/update').post(verifyToken).put(updateProduct)
-routes.route('/all').post(verifyToken).get(allList)
-routes.route('/warning').post(verifyToken).get(warningList)
-routes.route('/hot').post(verifyToken).get(hotList)
+
+routes.route('/create').post(verifyToken, createProduct)
+routes.route('/delete').delete(verifyToken, deleteProduct)
+routes.route('/update').put(verifyToken, updateProduct)
+routes.route('/all').get(verifyToken, allList)
+routes.route('/warning').get(verifyToken, warningList)
+routes.route('/hot').get(verifyToken, hotList)
 
 module.exports = routes
