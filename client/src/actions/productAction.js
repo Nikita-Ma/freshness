@@ -7,7 +7,7 @@ export const deleteProductAsyncAction = (product) => async (dispatch) => {
   dispatch(deleteProductLoading())
   if (product.nameProduct.length) {
     fetch('http://localhost:5000/v1/product/delete', {
-      method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -24,7 +24,7 @@ export const deleteProductAsyncAction = (product) => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(product), // body data type must match "Content-Type" header
+      body: JSON.stringify(product),
     })
       .then((res) => res.json())
       .then((resOk) => dispatch(deleteProductIdAction(resOk)))
@@ -70,13 +70,12 @@ export const createProductAsyncAction = (dataProduct) => async (dispatch) => {
   }
   dispatch(createProductLoading())
 
-  // TODO: Prepare STATUS CODE!!!
   fetch('http://localhost:5000/v1/product/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(refactorData), // body data Stype must match "Content-Type" header
+    body: JSON.stringify(refactorData),
   })
     .then((res) => res.json())
     .then((resData) => {
@@ -119,7 +118,7 @@ export const createProductError = (errData) => {
 export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
-    file: '/img/asdfghnjmnbvsdfsdfsdf', // ! Func FS saved img/unic-asdfsdgdfg.jpg
+    file: dataProduct.file.name,
   }
   dispatch(editProductLoading())
 
@@ -128,7 +127,7 @@ export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(refactorData), // body data type must match "Content-Type" header
+    body: JSON.stringify(refactorData),
   })
     .then((res) => res.json())
     .then((resOk) => dispatch(editProductSuccess(resOk)))

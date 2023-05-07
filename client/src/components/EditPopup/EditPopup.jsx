@@ -22,6 +22,27 @@ export const EditPopup = () => {
       [className]: value,
     }))
   }
+
+  const handleUpload = async (e) => {
+    e.preventDefault()
+    console.log(e.target.imgProduct.files[0])
+    const file = e.target.imgProduct.files[0]
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await fetch('http://localhost:5000/v1/upload', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((readyData) => console.log(readyData))
+
+      // Handle the server response here
+    } catch (error) {
+      console.error('Some error', error)
+    }
+  }
   const sendForm = () => {
     if (
       !product.nameProduct ||
@@ -41,7 +62,7 @@ export const EditPopup = () => {
   }
   return (
     // draft html structure
-    <>
+    <form onSubmit={handleUpload}>
       <h2>Edit product</h2>
       <input
         type="text"
@@ -86,13 +107,14 @@ export const EditPopup = () => {
         style={{ width: '100px', height: '100px', background: 'black' }}
       >
         <input
-          className="imgProduct"
           type="file"
           id="img-upload"
           accept="image/*"
           style={{ display: 'block', width: '100px', height: '100px' }}
           ref={imgUploadRef}
           onChange={handleInputChange}
+          className="imgProduct"
+          name="imgProduct"
         />
       </div>
       <button type={'button'} className="add" onClick={sendForm}>
@@ -101,6 +123,6 @@ export const EditPopup = () => {
       <button type={'button'} className="cancel">
         cancel
       </button>
-    </>
+    </form>
   )
 }

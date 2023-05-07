@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload')
 const path = require('path')
 const registerRoutes = require('./routes/registerRoutes')
 const loginRoutes = require('./routes/loginRoutes')
+const imagesRoutes = require('./routes/imagesRoutes')
 const productRoutes = require('./routes/productRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./utils/connectDB')
@@ -38,6 +39,7 @@ app.post('/v1/upload', (req, res) => {
     return res.send({ status: 'success', path: path })
   })
 })
+app.use('/v1/images', imagesRoutes)
 
 // TODO: REFACTOR SAVE IMG ON DIR NOT DATABASE!!
 app.use('/v1/product', productRoutes)
