@@ -4,6 +4,7 @@ const initialState = {
   error: null,
   dataError: null,
   listProducts: [],
+  warningProducts: [],
 }
 
 export const productReducer = (state = initialState, action) => {
@@ -74,6 +75,25 @@ export const productReducer = (state = initialState, action) => {
         listProducts: [...action.payload],
       }
     case 'ALL_PRODUCT_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        dataError: action.payload,
+      }
+
+    case 'WARNING_PRODUCT_LOADING':
+      return { ...state, loading: true }
+    case 'WARNING_PRODUCT_SUCCESS':
+      return {
+        ...state,
+        success: true,
+        loading: false,
+        error: true,
+        dataError: null,
+        warningProducts: [...action.payload],
+      }
+    case 'WARNING_PRODUCT_ERROR':
       return {
         ...state,
         loading: false,

@@ -1,5 +1,3 @@
-import { imgToBlob } from '../helpers/imgToBlob'
-
 /*
  * DELETE PRODUCT ACTION
  */
@@ -119,6 +117,7 @@ export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
   const refactorData = {
     ...dataProduct,
     file: dataProduct.file.name,
+    token: document.cookie.split('=')[1],
   }
   dispatch(editProductLoading())
 
@@ -144,7 +143,7 @@ export const editProductAsyncAction = (dataProduct) => async (dispatch) => {
 export const editProductSuccess = (resData) => {
   return {
     type: 'EDIT_PRODUCT_SUCCESS',
-    payload: JSON.stringify(resData),
+    payload: JSON.parse(resData),
   }
 }
 export const editProductLoading = () => {
@@ -162,9 +161,14 @@ export const editProductError = (errData) => {
  * ALL PRODUCT ACTION
  */
 export const allProductAsyncAction = () => (dispatch) => {
-  fetch('http://localhost:5000/v1/product/all', {
-    method: 'GET',
-  })
+  fetch(
+    `http://localhost:5000/v1/product/all?token=${
+      document.cookie.split('=')[1]
+    }`,
+    {
+      method: 'GET',
+    }
+  )
     .then((res) => res.json())
     .then((resOk) => dispatch(allProductSuccess(resOk)))
     .catch((e) => dispatch(allProductError(e)))
@@ -187,5 +191,43 @@ export const allProductError = (errData) => {
 export const allProductLoading = () => {
   return {
     type: 'ALL_PRODUCT_LOADING',
+  }
+}
+
+/*
+ * ALL PRODUCT ACTION
+ */
+export const warningProductAsyncAction = () => (dispatch) => {
+  warningProductLoading()
+  fetch(
+    `http://localhost:5000/v1/product/warning?token=${
+      document.cookie.split('=')[1]
+    }`,
+    {
+      method: 'GET',
+    }
+  )
+    .then((res) => res.json())
+    .then((resOk) => dispatch(warningProductSuccess(resOk)))
+    .catch((e) => dispatch(warningProductError(e)))
+}
+
+export const warningProductSuccess = (resData) => {
+  return {
+    type: 'WARNING_PRODUCT_SUCCESS',
+    payload: resData,
+  }
+}
+
+export const warningProductError = (errData) => {
+  return {
+    type: 'WARNING_PRODUCT_ERROR',
+    payload: errData,
+  }
+}
+
+export const warningProductLoading = () => {
+  return {
+    type: 'WARNING_PRODUCT_LOADING',
   }
 }

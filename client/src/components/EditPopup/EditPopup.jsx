@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { editProductAsyncAction } from '../../actions/productAction'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 // * Function params in FUTURE --> product, setProduct
 export const EditPopup = () => {
   const [product, setProduct] = useState({
@@ -72,21 +73,21 @@ export const EditPopup = () => {
         value={product.nameProduct || ''}
       />
       <input
-        type="text"
+        type="number"
         className="idProduct"
         placeholder={'id'}
         onChange={handleInputChange}
         value={product.idProduct || ''}
       />
       <input
-        type="text"
+        type="number"
         className="dateProduct"
         placeholder={'data'}
         onChange={handleInputChange}
         value={product.dateProduct || ''}
       />
       <input
-        type="text"
+        type="number"
         className="countProduct"
         placeholder={'count'}
         onChange={handleInputChange}
@@ -102,27 +103,24 @@ export const EditPopup = () => {
         voluptatibus.
       </textarea>
 
-      <div
-        className="box"
-        style={{ width: '100px', height: '100px', background: 'black' }}
-      >
-        <input
-          type="file"
-          id="img-upload"
-          accept="image/*"
-          style={{ display: 'block', width: '100px', height: '100px' }}
-          ref={imgUploadRef}
-          onChange={handleInputChange}
-          className="imgProduct"
-          name="imgProduct"
-        />
-      </div>
+      <input
+        type="file"
+        id="img-upload"
+        accept="image/*"
+        style={{ display: 'block', width: '100px', height: '100px' }}
+        ref={imgUploadRef}
+        onChange={handleInputChange}
+        className="imgProduct"
+        name="imgProduct"
+      />
       <button type={'button'} className="add" onClick={sendForm}>
         Edit
       </button>
-      <button type={'button'} className="cancel">
-        cancel
-      </button>
+      <Link to={'/'}>
+        <button type={'button'} className="cancel">
+          cancel
+        </button>
+      </Link>
     </form>
   )
 }

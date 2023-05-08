@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { createProductAsyncAction } from '../../actions/productAction'
 import { useDispatch } from 'react-redux'
-import './style.css'
+import { Link } from 'react-router-dom'
 
 export const CreatePopup = () => {
   const [product, setProduct] = useState({
@@ -127,9 +127,11 @@ export const CreatePopup = () => {
           <button type={'submit'} className="btn__add" onClick={sendForm}>
             ADD PRODUCT
           </button>
-          <button type={'button'} className="btn__cansel" onClick={closeForm}>
-            CANSEL
-          </button>
+          <Link to={'/'}>
+            <button type={'button'} className="btn__cansel" onClick={closeForm}>
+              CANSEL
+            </button>
+          </Link>
         </div>
       </div>
     </form>

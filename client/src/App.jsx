@@ -6,6 +6,8 @@ import { EditPopup } from './components/EditPopup/EditPopup'
 import { SearchBar } from './components/SearchBar/SearchBar'
 import { AllList } from './components/AllList/AllList'
 import { Login } from './components/Login/Login'
+import { WarningList } from './components/WarningList/WarningList'
+import { HotList } from './components/HotList/HotList'
 
 export const App = () => {
   return (
@@ -17,6 +19,8 @@ export const App = () => {
         <Route element={<CreatePopup />} path="/product/create" />
         <Route element={<EditPopup />} path="/product/edit" />
         <Route element={<DeletePopup />} path="/product/delete" />
+        <Route element={<WarningList />} path="/warning-list" />
+        <Route element={<HotList />} path="/hot-list" />
         <Route element={<AllList />} path="*" />
       </Routes>
     </Router>
