@@ -37,7 +37,7 @@
 
 `npm run server`
 
-#### [NOTES] server started on 5000 PORT
+#### [NOTES] `server` started on 5000 PORT `pgsql` started on 5432 _(watch .env file)_
 
 `PORT 5000`
 
@@ -56,9 +56,9 @@
 
 - **product_data**
 
-|p_name|p_id  | p_count   |p_date  |p_desc  |p_img  |
-|--|--|--|--|--|--|
-| [PK] text| [PK] bigInt |[PK] bigInt|[PK] bigInt|[PK] text| [PK] text | 
+|p_name|p_id  | p_count   |p_date  |p_desc  |p_img  | last_updated | 
+|--|--|--|--|--|--|--|
+| [PK] text| [PK] bigInt |[PK] bigInt|[PK] bigInt|[PK] text| [PK] text | [PK] text | 
 
 ### Environment Navigation
 

@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const activateCronJob = require('./utils/cronDeleteCount')
 const colors = require('colors')
 const bodyParser = require('express')
 const app = express()
@@ -13,6 +14,8 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./utils/connectDB')
 
 app.use(cors())
+
+activateCronJob()
 
 // * Connect DataBase
 connectDB()
