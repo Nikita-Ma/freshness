@@ -1,9 +1,7 @@
 import { useRef, useState } from 'react'
-import {
-  createProductAsyncAction,
-  editProductAsyncAction,
-} from '../../actions/productAction'
-import { useDispatch, useSelector } from 'react-redux'
+import { editProductAsyncAction } from '../../actions/productAction'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 // * Function params in FUTURE --> product, setProduct
 export const EditPopup = () => {
   const [product, setProduct] = useState({
@@ -25,6 +23,27 @@ export const EditPopup = () => {
       [className]: value,
     }))
   }
+
+  const handleUpload = async (e) => {
+    e.preventDefault()
+    console.log(e.target.imgProduct.files[0])
+    const file = e.target.imgProduct.files[0]
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await fetch('http://localhost:5000/v1/upload', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((readyData) => console.log(readyData))
+
+      // Handle the server response here
+    } catch (error) {
+      console.error('Some error', error)
+    }
+  }
   const sendForm = () => {
     if (
       !product.nameProduct ||
@@ -44,7 +63,7 @@ export const EditPopup = () => {
   }
   return (
     // draft html structure
-    <>
+    <form onSubmit={handleUpload}>
       <h2>Edit product</h2>
       <input
         type="text"
@@ -54,21 +73,21 @@ export const EditPopup = () => {
         value={product.nameProduct || ''}
       />
       <input
-        type="text"
+        type="number"
         className="idProduct"
         placeholder={'id'}
         onChange={handleInputChange}
         value={product.idProduct || ''}
       />
       <input
-        type="text"
+        type="number"
         className="dateProduct"
         placeholder={'data'}
         onChange={handleInputChange}
         value={product.dateProduct || ''}
       />
       <input
-        type="text"
+        type="number"
         className="countProduct"
         placeholder={'count'}
         onChange={handleInputChange}
@@ -84,26 +103,24 @@ export const EditPopup = () => {
         voluptatibus.
       </textarea>
 
-      <div
-        className="box"
-        style={{ width: '100px', height: '100px', background: 'black' }}
-      >
-        <input
-          className="imgProduct"
-          type="file"
-          id="img-upload"
-          accept="image/*"
-          style={{ display: 'block', width: '100px', height: '100px' }}
-          ref={imgUploadRef}
-          onChange={handleInputChange}
-        />
-      </div>
+      <input
+        type="file"
+        id="img-upload"
+        accept="image/*"
+        style={{ display: 'block', width: '100px', height: '100px' }}
+        ref={imgUploadRef}
+        onChange={handleInputChange}
+        className="imgProduct"
+        name="imgProduct"
+      />
       <button type={'button'} className="add" onClick={sendForm}>
         Edit
       </button>
-      <button type={'button'} className="cancel">
-        cancel
-      </button>
-    </>
+      <Link to={'/'}>
+        <button type={'button'} className="cancel">
+          cancel
+        </button>
+      </Link>
+    </form>
   )
 }

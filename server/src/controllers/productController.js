@@ -1,5 +1,3 @@
-//TODO: RETURN ALL PRODUCT EDIT/DELETE/CREATE ETC
-
 const asyncHandler = require('express-async-handler')
 const db = require('../config/db')
 
@@ -12,13 +10,11 @@ const createProduct = asyncHandler(async (req, res) => {
     descProduct,
     file,
   } = req.body
-
   const addNewProduct = await db.query(
     'INSERT INTO product_data ( p_name, p_id, p_date, p_count, p_desc, p_img) VALUES ($1, $2, $3, $4, $5, $6)',
     [nameProduct, idProduct, dateProduct, countProduct, descProduct, file]
   )
   const allProductList = await db.query('SELECT * FROM product_data')
-
   return res.json(allProductList.rows)
 })
 
@@ -33,7 +29,7 @@ const deleteProduct = asyncHandler(async (req, res, next) => {
       return res.json('Name not Found')
     }
     const allProductList = await db.query('SELECT * FROM product_data')
-    co
+
     return res.json(allProductList.rows)
   } else if (idProduct) {
     const deleteProductId = await db.query(
@@ -70,49 +66,9 @@ const updateProduct = asyncHandler(async (req, res, next) => {
   return res.json(allProductList.rows)
 })
 
-// ! TODO DELETE ON FUTURE || LOGIC ON FRONTEND
-// const searchProduct = asyncHandler(async (req, res, next) => {
-//   const { name, id } = req.query //
-//
-//   if (!(name || id)) {
-//     return res.sendStatus(404)
-//   }
-//
-//   if (name) {
-//     const findProductName = await db.query(
-//       'SELECT * FROM product_data WHERE p_name = $1',
-//       [name]
-//     )
-//     if (!findProductName.rows[0]) {
-//       return res.sendStatus(404)
-//     }
-//     res.json(findProductName.rows[0])
-//   }
-//
-//   if (id) {
-//     //*
-//     // * Search Product ID
-//     // */
-//     const findProductId = await db.query(
-//       'SELECT * FROM product_data WHERE p_id = $1',
-//       [id]
-//     )
-//     if (!findProductId.rows[0]) {
-//       return res.sendStatus(404)
-//     }
-//     res.json(findProductId.rows[0])
-//   }
-// })
-
 const allList = asyncHandler(async (req, res, next) => {
   const fullList = await db.query('SELECT * FROM product_data')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-  )
+
   return res.json(fullList.rows)
 })
 
@@ -134,7 +90,6 @@ module.exports = {
   createProduct,
   deleteProduct,
   updateProduct,
-  // ! searchProduct,  TODO DELETE ON FUTURE || LOGIC ON FRONTEND
   allList,
   warningList,
   hotList,

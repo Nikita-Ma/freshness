@@ -1,15 +1,18 @@
-# FRESHNESS
+# 🧨 BETA | FRESHNESS  🎣
 
 ![LAST COMMIT](https://img.shields.io/github/last-commit/Nikita-Ma/freshness/dev?style=for-the-badge)
 ![LICENSE](https://img.shields.io/npm/l/freshness?style=for-the-badge)
+
 ![ISSUES](https://img.shields.io/github/issues/NIkita-Ma/freshness?style=for-the-badge)
 ![ISSUES CLOSED](https://img.shields.io/github/issues-closed/Nikita-Ma/freshness?style=for-the-badge)
+
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Nikita-Ma/freshness?style=for-the-badge)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/Nikita-Ma/freshness?style=for-the-badge)
 
-### Client | Backend | Design
+### [Client 💻](https://github.com/Nikita-Ma/freshness/tree/dev/client) | [Server 💾](https://github.com/Nikita-Ma/freshness/tree/dev/server) | [Design 🔮](https://www.figma.com/file/cHbeanptjFKHGKZzJBv1Ko/WEB-PA-PROJECT?node-id=0%3A1&t=c3zXtzdC05NSsEbh-1)
 
-# Client (v.0.1.31)
+
+# Client (v.0.1.5)
 
 ## DOCS
 

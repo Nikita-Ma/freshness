@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { deleteProductAsyncAction } from '../../actions/productAction'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export const DeletePopup = () => {
   const [nameProduct, setNameProduct] = useState('')
   const [idProduct, setIdProduct] = useState('')
-  const productState = useSelector((state) => state.productReducer)
   const dispatch = useDispatch()
   const handlerInput = (e) => {
     console.log(e.target.name)
@@ -19,6 +19,7 @@ export const DeletePopup = () => {
     const readyData = {
       nameProduct: nameProduct,
       idProduct: idProduct,
+      token: document.cookie.split('=')[1],
     }
     dispatch(deleteProductAsyncAction(readyData))
   }
@@ -57,9 +58,11 @@ export const DeletePopup = () => {
           <button type={'button'} className="btn__add" onClick={deleteProduct}>
             DELETE PRODUCT
           </button>
-          <button type={'button'} className="btn__cansel">
-            CANSEL
-          </button>
+          <Link to={'/'}>
+            <button type={'button'} className="btn__cansel">
+              CANSEL
+            </button>
+          </Link>
         </div>
       </div>
     </>

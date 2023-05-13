@@ -4,11 +4,11 @@ const Pool = require('pg').Pool
 function connectDB() {
   // TODO: insert values in .ENV && write docs
   const pool = new Pool({
-    host: '192.168.0.1',
-    port: 5432,
-    database: 'postgres',
-    user: 'postgres',
-    password: '1234',
+    host: process.env.LOCAL_PGHOST,
+    port: process.env.PGPORT,
+    database: process.env.PGDATABASE,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
   })
   pool
     .connect()

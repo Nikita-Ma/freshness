@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { createProductAsyncAction } from '../../actions/productAction'
 import { useDispatch } from 'react-redux'
-import './style.css'
+import { Link } from 'react-router-dom'
 
 export const CreatePopup = () => {
   const [product, setProduct] = useState({
@@ -24,6 +24,27 @@ export const CreatePopup = () => {
       [className.split(' ')[0]]: value,
     }))
   }
+  const handleUpload = async (e) => {
+    e.preventDefault()
+    console.log(e.target.imgProduct.files[0])
+    const file = e.target.imgProduct.files[0]
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await fetch('http://localhost:5000/v1/upload', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((readyData) => console.log(readyData))
+
+      // Handle the server response here
+    } catch (error) {
+      console.error('Some error', error)
+    }
+  }
+
   const sendForm = () => {
     if (
       !product.nameProduct ||
@@ -45,7 +66,7 @@ export const CreatePopup = () => {
     console.log('closed')
   }
   return (
-    <>
+    <form onSubmit={handleUpload}>
       <div className="card">
         <p className="card__text">CREATE PRODUCT</p>
         <input
@@ -91,25 +112,28 @@ export const CreatePopup = () => {
             style={{ width: '100px', height: '100px', background: 'black' }}
           >
             <input
-              className="imgProduct"
               type="file"
               id="img-upload"
               accept="image/*"
               style={{ display: 'block', width: '100px', height: '100px' }}
               ref={imgUploadRef}
               onChange={handleInputChange}
+              className="imgProduct"
+              name="imgProduct"
             />
           </div>
         </div>
         <div className="btn">
-          <button type={'button'} className="btn__add" onClick={sendForm}>
+          <button type={'submit'} className="btn__add" onClick={sendForm}>
             ADD PRODUCT
           </button>
-          <button type={'button'} className="btn__cansel" onClick={closeForm}>
-            CANSEL
-          </button>
+          <Link to={'/'}>
+            <button type={'button'} className="btn__cansel" onClick={closeForm}>
+              CANSEL
+            </button>
+          </Link>
         </div>
       </div>
-    </>
+    </form>
   )
 }

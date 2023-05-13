@@ -11,7 +11,7 @@ export const checkIdReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CHECK_ID_SUCCESS':
       return {
-        state,
+        ...state,
         alertStatusSuccess: true,
         alertStatusInfo: action.payload,
       }
@@ -22,6 +22,24 @@ export const checkIdReducer = (state = initialState, action) => {
         alertStatusInfo: action.payload,
       }
     case 'CHECK_ID_ERROR':
+      return {
+        ...state,
+        alertStatusError: true,
+        alertStatusInfo: action.payload,
+      }
+    case 'CREATE_ID_SUCCESS':
+      return {
+        ...state,
+        alertStatusSuccess: true,
+        alertStatusInfo: action.payload,
+      }
+    case 'CREATE_ID_WARNING':
+      return {
+        ...state,
+        alertStatusWarning: true,
+        alertStatusInfo: action.payload,
+      }
+    case 'CREATE_ID_ERROR':
       return {
         ...state,
         alertStatusError: true,

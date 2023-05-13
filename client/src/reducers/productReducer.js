@@ -1,11 +1,10 @@
-import { allProductSuccess } from '../actions/productAction'
-
 const initialState = {
   loading: false,
   success: null,
   error: null,
   dataError: null,
   listProducts: [],
+  warningProducts: [],
 }
 
 export const productReducer = (state = initialState, action) => {
@@ -33,11 +32,13 @@ export const productReducer = (state = initialState, action) => {
     case 'CREATE_PRODUCT_SUCCESS':
       return {
         ...state,
+        success: true,
         loading: false,
       }
     case 'CREATE_PRODUCT_ERROR':
       return {
         ...state,
+        success: false,
         loading: false,
         error: true,
         dataError: action.payload,
@@ -54,6 +55,7 @@ export const productReducer = (state = initialState, action) => {
     case 'EDIT_PRODUCT_SUCCESS':
       return {
         ...state,
+        success: true,
         loading: false,
         error: true,
         dataError: null,
@@ -66,12 +68,32 @@ export const productReducer = (state = initialState, action) => {
     case 'ALL_PRODUCT_SUCCESS':
       return {
         ...state,
+        success: true,
         loading: false,
         error: true,
         dataError: null,
         listProducts: [...action.payload],
       }
     case 'ALL_PRODUCT_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        dataError: action.payload,
+      }
+
+    case 'WARNING_PRODUCT_LOADING':
+      return { ...state, loading: true }
+    case 'WARNING_PRODUCT_SUCCESS':
+      return {
+        ...state,
+        success: true,
+        loading: false,
+        error: true,
+        dataError: null,
+        warningProducts: [...action.payload],
+      }
+    case 'WARNING_PRODUCT_ERROR':
       return {
         ...state,
         loading: false,
